@@ -1,0 +1,1 @@
+JUnit4 compatible contract tests for common JDK interfaces and patterns.
