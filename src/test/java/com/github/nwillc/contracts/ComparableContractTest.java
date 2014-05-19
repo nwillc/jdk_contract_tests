@@ -1,23 +1,23 @@
 package com.github.nwillc.contracts;
 
-public class ComparableContractTest extends ComparableContract<Integer> {
+public class ComparableContractTest extends ComparableContract {
 	@Override
-	protected Integer getValue() {
+	protected Comparable getValue() {
 		return new Integer(2);
 	}
 
 	@Override
-	protected Integer getEqualToValue() {
+	protected Comparable getEqualToValue() {
 		return 2;
 	}
 
 	@Override
-	protected Integer getLessThanValue() {
+	protected Comparable getLessThanValue() {
 		return 1;
 	}
 
 	@Override
-	protected Integer getGreaterThanValue() {
+	protected Comparable getGreaterThanValue() {
 		return 3;
 	}
 }

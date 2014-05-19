@@ -21,16 +21,16 @@ import static org.fest.assertions.Assertions.assertThat;
 import static org.fest.assertions.api.Assertions.failBecauseExceptionWasNotThrown;
 
 @SuppressWarnings("unchecked")
-public abstract class ComparableContract<T extends Comparable> {
+public abstract class ComparableContract {
 
-	protected abstract T getValue();
-	protected abstract T getEqualToValue();
-	protected abstract T getLessThanValue();
-	protected abstract T getGreaterThanValue();
+	protected abstract Comparable getValue();
+	protected abstract Comparable getEqualToValue();
+	protected abstract Comparable getLessThanValue();
+	protected abstract Comparable getGreaterThanValue();
 
 	@Test
 	public void shouldThrowExceptionForNull() throws Exception {
-		final T value = getValue();
+		final Comparable value = getValue();
 		assertThat(value).isNotNull();
 		try {
 			value.compareTo(null);
@@ -40,7 +40,7 @@ public abstract class ComparableContract<T extends Comparable> {
 
 	@Test
 	public void shouldThrowExceptionForBadCast() throws Exception {
-		final T value = getValue();
+		final Comparable value = getValue();
 		assertThat(value).isNotNull();
 		try {
 			value.compareTo(new Object());
@@ -50,8 +50,8 @@ public abstract class ComparableContract<T extends Comparable> {
 
 	@Test
 	public void shouldReturnZeroOnEquality() throws Exception {
-		final T value = getValue();
-		final T equal = getEqualToValue();
+		final Comparable value = getValue();
+		final Comparable equal = getEqualToValue();
 
 		assertThat(value).isNotNull();
 		assertThat(equal).isNotNull();
@@ -60,8 +60,8 @@ public abstract class ComparableContract<T extends Comparable> {
 
 	@Test
 	public void shouldReturnNegativeOnLessThan() throws Exception {
-		final T value = getValue();
-		final T lessThan = getGreaterThanValue();
+		final Comparable value = getValue();
+		final Comparable lessThan = getGreaterThanValue();
 
 		assertThat(value).isNotNull();
 		assertThat(lessThan).isNotNull();
@@ -70,8 +70,8 @@ public abstract class ComparableContract<T extends Comparable> {
 
 	@Test
 	public void shouldReturnPositiveOnGreaterThan() throws Exception {
-		final T value = getValue();
-		final T greaterThan = getLessThanValue();
+		final Comparable value = getValue();
+		final Comparable greaterThan = getLessThanValue();
 
 		assertThat(value).isNotNull();
 		assertThat(greaterThan).isNotNull();
