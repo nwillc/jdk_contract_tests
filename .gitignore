@@ -1,4 +1,6 @@
 .idea
 *.i??
-
 target
+.gradle
+build
+
