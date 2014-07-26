@@ -15,14 +15,13 @@
 
 package com.github.nwillc.contracts;
 
-import org.fest.assertions.Assertions;
 import org.junit.Test;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 
-import static org.fest.assertions.api.Assertions.assertThat;
-import static org.fest.assertions.api.Fail.fail;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 
 public abstract class PrivateConstructorContract {
 
@@ -42,8 +41,8 @@ public abstract class PrivateConstructorContract {
 		assertThat(actual).isNotNull();
 
         Constructor<?>[] cons = actual.getDeclaredConstructors();
-        Assertions.assertThat(cons.length).isEqualTo(1);
-        Assertions.assertThat(cons[0].isAccessible()).isFalse();
+        assertThat(cons.length).isEqualTo(1);
+        assertThat(cons[0].isAccessible()).isFalse();
         cons[0].setAccessible(true);
         try {
             cons[0].newInstance((Object[])null);

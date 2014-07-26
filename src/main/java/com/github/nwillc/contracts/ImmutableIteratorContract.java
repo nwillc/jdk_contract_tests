@@ -20,8 +20,8 @@ import org.junit.Test;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
-import static org.fest.assertions.api.Assertions.assertThat;
-import static org.fest.assertions.api.Assertions.failBecauseExceptionWasNotThrown;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Fail.failBecauseExceptionWasNotThrown;
 
 public abstract class ImmutableIteratorContract extends IteratorContract {
  	private static final Logger LOGGER = Logger.getLogger(ImmutableIteratorContract.class.getName());

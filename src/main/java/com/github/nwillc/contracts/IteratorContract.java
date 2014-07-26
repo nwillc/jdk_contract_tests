@@ -22,11 +22,11 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
-import static org.fest.assertions.api.Assertions.assertThat;
-import static org.fest.assertions.api.Assertions.failBecauseExceptionWasNotThrown;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 
 public abstract class IteratorContract {
-	private static final Logger LOGGER = Logger.getLogger(ImmutableIteratorContract.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ImmutableIteratorContract.class.getName());
 
     protected abstract Iterator getNonEmptyIterator();
 
@@ -34,16 +34,14 @@ public abstract class IteratorContract {
     public void shouldNotPassEndOfIterator() throws Exception {
         Iterator anIterator = getNonEmptyIterator();
         assertThat(anIterator).isNotNull();
-        assertThat(anIterator.hasNext()).isTrue();
-        while(anIterator.hasNext()) {
+        while (anIterator.hasNext()) {
             anIterator.next();
         }
-
-       try {
-           anIterator.next();
-           failBecauseExceptionWasNotThrown(NoSuchElementException.class);
-       } catch (NoSuchElementException e) {
-		  LOGGER.fine("Caught expected " + e);
-       }
+        try {
+            anIterator.next();
+            failBecauseExceptionWasNotThrown(NoSuchElementException.class);
+        } catch (NoSuchElementException e) {
+            LOGGER.fine("Caught expected " + e);
+        }
     }
 }

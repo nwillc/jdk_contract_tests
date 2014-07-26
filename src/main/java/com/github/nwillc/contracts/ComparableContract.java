@@ -17,8 +17,8 @@ package com.github.nwillc.contracts;
 
 import org.junit.Test;
 
-import static org.fest.assertions.Assertions.assertThat;
-import static org.fest.assertions.api.Assertions.failBecauseExceptionWasNotThrown;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Fail.failBecauseExceptionWasNotThrown;
 
 @SuppressWarnings("unchecked")
 public abstract class ComparableContract {
