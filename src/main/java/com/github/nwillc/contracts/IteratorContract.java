@@ -18,6 +18,7 @@ package com.github.nwillc.contracts;
 
 import org.junit.Test;
 
+import javax.swing.text.html.HTMLDocument;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.logging.Logger;
@@ -29,6 +30,36 @@ public abstract class IteratorContract {
     private static final Logger LOGGER = Logger.getLogger(ImmutableIteratorContract.class.getName());
 
     protected abstract Iterator getNonEmptyIterator();
+
+    @Test
+    public void hasNextShouldNotAdvanceIterator() throws Exception {
+        int count = count(getNonEmptyIterator());
+        assertThat(count).as("Iterator should be non empty").isGreaterThan(0);
+
+        Iterator iterator = getNonEmptyIterator();
+
+        while (count > 0) {
+            count--;
+            iterator.hasNext();
+        }
+
+        assertThat(iterator.hasNext()).as("hasNest should not advance iterator").isTrue();
+    }
+
+    @Test
+    public void nextShouldAdvanceIterator() throws Exception {
+        int count = count(getNonEmptyIterator());
+        assertThat(count).as("Iterator should be non empty").isGreaterThan(0);
+
+        Iterator iterator = getNonEmptyIterator();
+
+        while (count > 0) {
+            count--;
+            iterator.next();
+        }
+
+        assertThat(iterator.hasNext()).as("next should not advance iterator").isFalse();
+    }
 
     @Test
     public void shouldNotPassEndOfIterator() throws Exception {
@@ -43,5 +74,14 @@ public abstract class IteratorContract {
         } catch (NoSuchElementException e) {
             LOGGER.fine("Caught expected " + e);
         }
+    }
+
+    private int count(Iterator iterator) {
+        int count = 0;
+        while (iterator.hasNext()) {
+            count++;
+            iterator.next();
+        }
+        return count;
     }
 }
