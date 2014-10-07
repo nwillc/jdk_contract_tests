@@ -62,6 +62,17 @@ public abstract class IteratorContract {
     }
 
     @Test
+    public void hasNextPastEnd() throws Exception {
+        Iterator iterator = getNonEmptyIterator();
+
+        while (iterator.hasNext()) {
+            iterator.next();
+        }
+
+        assertThat(iterator.hasNext()).as("hasNext past end of iterator").isFalse();
+    }
+
+    @Test
     public void shouldNotPassEndOfIterator() throws Exception {
         Iterator anIterator = getNonEmptyIterator();
         assertThat(anIterator).isNotNull();
