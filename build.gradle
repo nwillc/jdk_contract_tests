@@ -4,7 +4,7 @@ apply plugin: 'release'
 
 group = "com.github.nwillc"
 archivesBaseName = "contracts"
-version = "1.5"
+version = "1.6"
 targetCompatibility = "1.6"
 sourceCompatibility = "1.6"
 
@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
     compile 'junit:junit:4.+',
-            'org.assertj:assertj-core:1.6.+'
+            'org.assertj:assertj-core:1.7.+'
 }
 
 buildscript {
@@ -84,3 +84,37 @@ task listJars << {
     configurations.testCompile.each { File file -> println "\t" + file.name }
 }
 
+// Find any 3rd party libraries which have released new versions
+// to the central Maven repo since we last upgraded.
+task checkLibVersions << {
+    def checked = [:]
+    allprojects {
+        configurations.each { configuration ->
+            configuration.allDependencies.each { dependency ->
+                def version = dependency.version
+                if(!version.contains('SNAPSHOT') && !checked[dependency]) {
+                    def group = dependency.group
+                    def path = group.replace('.', '/')
+                    def name = dependency.name
+                    def url = "http://repo1.maven.org/maven2/$path/$name/maven-metadata.xml"
+                    try {
+                        def metadata = new XmlSlurper().parseText(url.toURL().text)
+                        def versions = metadata.versioning.versions.version.collect { it.text() }
+                        versions.removeAll { it.toLowerCase().contains('alpha') }
+                        versions.removeAll { it.toLowerCase().contains('beta') }
+                        versions.removeAll { it.toLowerCase().contains('rc') }
+                        def newest = versions.last()
+                        if(version != newest) {
+                            println "$group:$name $version -> $newest"
+                        }
+                    } catch(FileNotFoundException e) {
+                        logger.debug "Unable to download $url: $e.message"
+                    } catch(org.xml.sax.SAXParseException e) {
+                        logger.debug "Unable to parse $url: $e.message"
+                    }
+                    checked[dependency] = true
+                }
+            }
+        }
+    }
+}
