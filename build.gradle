@@ -21,8 +21,8 @@ dependencies {
 
 buildscript {
     repositories {
-        mavenLocal();
         jcenter()
+        mavenCentral()
         maven {
               url 'http://maven.tmatesoft.com/content/repositories/releases/'
             }
