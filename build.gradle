@@ -5,7 +5,7 @@ apply plugin: 'com.github.nwillc.vplugin'
 
 group = "com.github.nwillc"
 archivesBaseName = "contracts"
-version = "1.6.2"
+version = "1.6.3"
 targetCompatibility = "1.6"
 sourceCompatibility = "1.6"
 
@@ -15,8 +15,8 @@ repositories {
 }
 
 dependencies {
-    compile 'junit:junit:4.+',
-            'org.assertj:assertj-core:1.7.+'
+    compile 'junit:junit:4.11',
+            'org.assertj:assertj-core:1.7.0'
 }
 
 buildscript {
@@ -32,7 +32,7 @@ buildscript {
         classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7.1',
                   'org.tmatesoft.sqljet:sqljet:1.1.9',
                   'au.com.ish.gradle:release:2.2.2',
-                'com.github.nwillc:vplugin:1.+'
+                  'com.github.nwillc:vplugin:1.+'
     }
 }
 
