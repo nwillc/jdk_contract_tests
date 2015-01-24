@@ -9,3 +9,8 @@
 
 ## License
 - [ISC](#docs/LICENSE)
+
+-------
+*Travis Build Status:* 
+   
+[![Build Status](https://travis-ci.org/nwillc/jdk_contract_tests.svg?branch=master)](https://travis-ci.org/nwillc/jdk_contract_tests)
