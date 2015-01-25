@@ -18,7 +18,7 @@ package com.github.nwillc.contracts;
 
 import org.junit.Test;
 
-import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,21 +26,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * This contract checks for:
  * <ul>
- *     <li>All constructors are private</li>
+ *     <li>Private constructors only</li>
+ *     <li>Class should be final</li>
+ *     <li>All methods declared should be static</li>
  * </ul>
  */
-public abstract class PrivateConstructorContract {
-
-    protected abstract Class<?> getClassToTest();
+public abstract class UtilityClassContract extends PrivateConstructorContract {
 
     @Test
-    public void shouldHaveOnlyPrivateConstructors() throws Exception {
+    public void shouldBeFinal() throws Exception {
         Class<?> actual = getClassToTest();
         assertThat(actual).isNotNull();
+        final int modifiers = actual.getModifiers();
+        assertThat(Modifier.isFinal(modifiers)).describedAs("Class should be final").isTrue();
+    }
 
-        Constructor<?>[] cons = actual.getDeclaredConstructors();
-        for (Constructor<?> constructor : cons) {
-            assertThat(Modifier.isPrivate(constructor.getModifiers())).describedAs("Only private constructor(s)").isTrue();
+    @Test
+    public void shouldHaveOnlyStaticMethods() throws Exception {
+        Class<?> actual = getClassToTest();
+        assertThat(actual).isNotNull();
+        for (Method method : actual.getMethods()) {
+            if (method.getDeclaringClass() == actual) {
+                assertThat(Modifier.isStatic(method.getModifiers())).describedAs("Method is static: %s", method.getName()).isTrue();
+            }
         }
     }
 }

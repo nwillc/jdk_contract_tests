@@ -18,7 +18,7 @@ package com.github.nwillc.contracts;
 
 import org.junit.Test;
 
-import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,21 +26,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * This contract checks for:
  * <ul>
- *     <li>All constructors are private</li>
+ *   <li>Private constructors only</li>
+ *   <li>Presence of method: public static getInstance()</li>
  * </ul>
+ *
  */
-public abstract class PrivateConstructorContract {
-
-    protected abstract Class<?> getClassToTest();
+public abstract class SingletonContract extends PrivateConstructorContract {
 
     @Test
-    public void shouldHaveOnlyPrivateConstructors() throws Exception {
+    public void shouldImplementGetInstance() throws Exception {
         Class<?> actual = getClassToTest();
         assertThat(actual).isNotNull();
-
-        Constructor<?>[] cons = actual.getDeclaredConstructors();
-        for (Constructor<?> constructor : cons) {
-            assertThat(Modifier.isPrivate(constructor.getModifiers())).describedAs("Only private constructor(s)").isTrue();
+        boolean found = false;
+        for (Method method : actual.getMethods()) {
+            int modifiers = method.getModifiers();
+            if (Modifier.isStatic(modifiers)
+                    && Modifier.isPublic(modifiers)
+                    && method.getName().equals("getInstance")
+                    && (method.getParameterTypes().length == 0)
+                    && method.getReturnType() == actual) {
+                found = true;
+                break;
+            }
         }
+        assertThat(found).describedAs("Has method: public static %s getInstance()", actual.getSimpleName()).isTrue();
     }
+
 }

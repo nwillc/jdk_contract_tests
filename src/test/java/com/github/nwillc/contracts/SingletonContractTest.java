@@ -16,26 +16,15 @@
 
 package com.github.nwillc.contracts;
 
-import org.junit.Test;
+public class SingletonContractTest extends SingletonContract {
 
-import java.util.Iterator;
-import java.util.logging.Logger;
+    @Override
+    protected Class<?> getClassToTest() {
+        return UtilityClass.class;
+    }
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Fail.failBecauseExceptionWasNotThrown;
-
-public abstract class ImmutableIteratorContract extends IteratorContract {
- 	private static final Logger LOGGER = Logger.getLogger(ImmutableIteratorContract.class.getName());
-
-    @Test
-    public void shouldNotImplementRemove() throws Exception {
-        Iterator iterator = getNonEmptyIterator();
-        assertThat(iterator).isNotNull();
-        try {
-            iterator.remove();
-            failBecauseExceptionWasNotThrown(UnsupportedOperationException.class);
-        } catch (UnsupportedOperationException e) {
-		  LOGGER.fine("Caught expected " + e);
-        }
+    private static final class UtilityClass {
+        private UtilityClass() {}
+        public static UtilityClass getInstance() { return null; }
     }
 }

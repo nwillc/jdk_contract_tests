@@ -16,26 +16,36 @@
 
 package com.github.nwillc.contracts;
 
+
 import org.junit.Test;
 
-import java.util.Iterator;
-import java.util.logging.Logger;
+import java.lang.reflect.Constructor;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Fail.failBecauseExceptionWasNotThrown;
 
-public abstract class ImmutableIteratorContract extends IteratorContract {
- 	private static final Logger LOGGER = Logger.getLogger(ImmutableIteratorContract.class.getName());
+/**
+ * This contract checks for:
+ * <ul>
+ *     <li>Presence of a no argument constructor</li>
+ * </ul>
+ */
+public abstract class NoArgConstructorContract {
+    protected abstract Class<?> getClassToTest();
 
     @Test
-    public void shouldNotImplementRemove() throws Exception {
-        Iterator iterator = getNonEmptyIterator();
-        assertThat(iterator).isNotNull();
-        try {
-            iterator.remove();
-            failBecauseExceptionWasNotThrown(UnsupportedOperationException.class);
-        } catch (UnsupportedOperationException e) {
-		  LOGGER.fine("Caught expected " + e);
+    public void shouldHaveNoArgConstructor() throws Exception {
+        Class<?> actual = getClassToTest();
+        assertThat(actual).isNotNull();
+
+        Constructor<?>[] cons = actual.getDeclaredConstructors();
+        assertThat(cons.length).describedAs("Only single constructor").isEqualTo(1);
+        boolean found = false;
+        for (Constructor constructor : cons) {
+            if (constructor.getParameterTypes().length == 0) {
+                found = true;
+                break;
+            }
         }
+        assertThat(found).describedAs("No arg constructor").isTrue();
     }
 }
