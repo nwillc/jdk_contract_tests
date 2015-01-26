@@ -3,4 +3,7 @@ jdk:
   - openjdk6
   - oraclejdk7
   - oraclejdk8
-
+env:
+  - TERM=dumb
+after_success:
+  - gradle jacocoTestReport coveralls
