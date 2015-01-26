@@ -1,7 +1,7 @@
 ## Links
 - [Home]()
 - [Usage](#docs/usage)
-- [API docs](./apidocs)
+- [API Docs](./javadoc)
 - [Example](#docs/example)
 
 ## The Bits
