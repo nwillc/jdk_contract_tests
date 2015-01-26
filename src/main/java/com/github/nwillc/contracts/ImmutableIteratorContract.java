@@ -24,6 +24,12 @@ import java.util.logging.Logger;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Fail.failBecauseExceptionWasNotThrown;
 
+/**
+ * This contract checks for:
+ * <ul>
+ *     <li>The iterator's remove throws UnsupportedOperationException</li>
+ * </ul>
+ */
 public abstract class ImmutableIteratorContract extends IteratorContract {
  	private static final Logger LOGGER = Logger.getLogger(ImmutableIteratorContract.class.getName());
 

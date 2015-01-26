@@ -27,7 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * This contract checks for:
  * <ul>
  *   <li>Private constructors only</li>
- *   <li>Presence of method: public static getInstance()</li>
+ *   <li>Presence of method: public static Class getInstance()</li>
  * </ul>
  *
  */

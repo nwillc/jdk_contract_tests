@@ -26,6 +26,15 @@ import java.util.logging.Logger;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 
+/**
+ * This contract checks for:
+ * <ul>
+ *     <li>hasNext does not advance the iterator</li>
+ *     <li>next advances the iterator</li>
+ *     <li>hasNext returns false after end of iterator</li>
+ *     <li>next after end of iterator throws NoSuchElementException</li>
+ * </ul>
+ */
 public abstract class IteratorContract {
     private static final Logger LOGGER = Logger.getLogger(ImmutableIteratorContract.class.getName());
 
@@ -65,9 +74,11 @@ public abstract class IteratorContract {
     public void hasNextPastEnd() throws Exception {
         Iterator iterator = getNonEmptyIterator();
 
-        while (iterator.hasNext()) {
-            iterator.next();
-        }
+        try {
+            while (true) {
+                iterator.next();
+            }
+        } catch (NoSuchElementException e) {}
 
         assertThat(iterator.hasNext()).as("hasNext past end of iterator").isFalse();
     }
