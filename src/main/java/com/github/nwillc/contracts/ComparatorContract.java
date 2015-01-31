@@ -39,8 +39,16 @@ import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
  * @since 1.6.5
  */
 public abstract class ComparatorContract<T> {
+	/**
+	 * @since 1.6.6
+	 */
 	protected enum Nulls {
-		ERROR, NULLS_FIRST, NULLS_LAST;
+		/** Nulls throw NullPointerException. */
+		ERROR,
+		/** Nulls are considered to be ordered first. */
+		NULLS_FIRST,
+		/** Nulls are considered to be ordered last. */
+		NULLS_LAST
 	}
 
 	private Comparator<T> comparator;
