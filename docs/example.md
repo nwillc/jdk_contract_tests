@@ -15,15 +15,15 @@ This packages tests follow this pattern so lets look at `ComparableContractTest.
 	     	return 2;
 		}
 
-	   	@Override
-	   	protected Integer getEqualToValue() {
-	    	return 2;
-	   	}
-
-	   	@Override
-	   	protected Integer getLessThanValue() {
-	    	return 1;
-	   	}
+		@Override
+		protected Integer getEqualToValue() {
+			return 2;
+		}
+		
+		@Override
+		protected Integer getLessThanValue() {
+			return 1;
+		}
 	}
 
 The above extends `ComparableContract` and implements the abstract methods. Running `JUnit` will result in a series of `@Test`s in `ComparableContract` to run
