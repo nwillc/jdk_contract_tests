@@ -16,19 +16,29 @@
 
 package com.github.nwillc.contracts;
 
-public class ComparableContractTest extends ComparableContract<Integer> {
-	@Override
-	protected Integer getValue() {
-		return 2;
-	}
+import java.util.Comparator;
 
-	@Override
-	protected Integer getEqualToValue() {
-		return 2;
-	}
+public class ComparatorContractTest extends ComparatorContract<Long> {
 
-	@Override
-	protected Integer getLessThanValue() {
-		return 1;
-	}
+    @Override
+    protected Comparator<Long> getComparator() {
+        return new LongComparator();
+    }
+
+    @Override
+    protected Long getValue() {
+        return 1L;
+    }
+
+    @Override
+    protected Long getLesserValue() {
+        return 0L;
+    }
+
+    public static class LongComparator implements Comparator<Long> {
+        @Override
+        public int compare(Long t1, Long t2) {
+            return (int)(t1 - t2);
+        }
+    }
 }

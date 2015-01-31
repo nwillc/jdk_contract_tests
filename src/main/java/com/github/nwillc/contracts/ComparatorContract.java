@@ -16,71 +16,63 @@
 
 package com.github.nwillc.contracts;
 
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.Before;
+
+import java.util.Comparator;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Fail.failBecauseExceptionWasNotThrown;
+import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 
 /**
  * This contract checks:
  * <ul>
- *     <li>compareTo with null argument throws NullPointerException</li>
- *     <li>compareTo with argument that can't be cast to correct type throws ClassCastException</li>
+ *     <li>compare with argument that can't be cast to correct type throws ClassCastException</li>
  *     <li>returns 0 on equality</li>
  *     <li>returns less then zero on less then</li>
  *     <li>returns greater then zero on greater</li>
  * </ul>
+ * No assumptions about null values are made, the jdk contract does not specify any.
+ * @since 1.6.5
  */
-@SuppressWarnings("unchecked")
-public abstract class ComparableContract<T extends Comparable> {
+public abstract class ComparatorContract<T> {
+	private Comparator<T> comparator;
 	private T value;
-	private T equalValue;
 	private T lesserValue;
 
+	protected abstract Comparator<T> getComparator();
 	protected abstract T getValue();
-	protected abstract T getEqualToValue();
-	protected abstract T getLessThanValue();
+	protected abstract T getLesserValue();
 
 	@Before
 	public void contractSetup() throws Exception {
+		comparator = getComparator();
+		assertThat(comparator).describedAs("getComparator must return non null value").isNotNull();
 		value = getValue();
-		assertThat(value).isNotNull();
-		equalValue = getEqualToValue();
-		assertThat(equalValue).isNotNull();
-		lesserValue = getLessThanValue();
-		assertThat(lesserValue).isNotNull();
-	}
-
-	@Test
-	public void shouldThrowExceptionForNull() throws Exception {
-		try {
-			value.compareTo(null);
-			failBecauseExceptionWasNotThrown(NullPointerException.class);
-		} catch (NullPointerException e) {}
+		lesserValue = getLesserValue();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Test
 	public void shouldThrowExceptionForBadCast() throws Exception {
 		try {
-			value.compareTo((T)this);
+			comparator.compare(value, (T)this);
 			failBecauseExceptionWasNotThrown(ClassCastException.class);
 		} catch (ClassCastException e) {}
 	}
 
 	@Test
 	public void shouldReturnZeroOnEquality() throws Exception {
-		assertThat(value.compareTo(equalValue)).isEqualTo(0);
+		assertThat(comparator.compare(value,value)).isEqualTo(0);
 	}
 
 	@Test
 	public void shouldReturnNegativeOnLessThan() throws Exception {
-		assertThat(lesserValue.compareTo(value)).isLessThan(0);
+		assertThat(comparator.compare(lesserValue, value)).isLessThan(0);
 	}
 
 	@Test
 	public void shouldReturnPositiveOnGreaterThan() throws Exception {
-		assertThat(value.compareTo(lesserValue)).isGreaterThan(0);
+		assertThat(comparator.compare(value, lesserValue)).isGreaterThan(0);
 	}
 }
