@@ -8,22 +8,22 @@ To use these contracts is straight forward.
 This packages tests follow this pattern so lets look at `ComparableContractTest.java` as a simple example:
 
 	package com.github.nwillc.contracts;
-
-   	public class ComparableContractTest extends ComparableContract<Integer> {
-   	   @Override
-   	   protected Integer getValue() {
+	
+	public class ComparableContractTest extends ComparableContract<Integer> {
+		@Override
+		protected Integer getValue() {
 	     	return 2;
-	   }
+		}
 
-	   @Override
-	   protected Integer getEqualToValue() {
+	   	@Override
+	   	protected Integer getEqualToValue() {
 	    	return 2;
-	   }
+	   	}
 
-	   @Override
-	   protected Integer getLessThanValue() {
+	   	@Override
+	   	protected Integer getLessThanValue() {
 	    	return 1;
-	   }
+	   	}
 	}
 
 The above extends `ComparableContract` and implements the abstract methods. Running `JUnit` will result in a series of `@Test`s in `ComparableContract` to run
