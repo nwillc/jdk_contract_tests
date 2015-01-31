@@ -16,8 +16,8 @@
 
 package com.github.nwillc.contracts;
 
-import org.junit.Test;
 import org.junit.Before;
+import org.junit.Test;
 
 import java.util.Comparator;
 
@@ -31,18 +31,34 @@ import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
  *     <li>returns 0 on equality</li>
  *     <li>returns less then zero on less then</li>
  *     <li>returns greater then zero on greater</li>
+ *     <li>Null values throw a NullPointerException (see below)</li>
  * </ul>
- * No assumptions about null values are made, the jdk contract does not specify any.
+ * The jdk contract does not specify how nulls are handled. The possibilities are nulls constitute an error,
+ * they are ordered first, or ordered last. This contract defaults to the error case, but the behavior can
+ * be controlled by calling setNulls() with the appropriate value.
  * @since 1.6.5
  */
 public abstract class ComparatorContract<T> {
+	protected enum Nulls {
+		ERROR, NULLS_FIRST, NULLS_LAST;
+	}
+
 	private Comparator<T> comparator;
 	private T value;
 	private T lesserValue;
+	private Nulls nulls = Nulls.ERROR;
 
 	protected abstract Comparator<T> getComparator();
 	protected abstract T getValue();
 	protected abstract T getLesserValue();
+
+	/**
+	 * @since 1.6.6
+	 * @param nulls How nulls should be treated.
+	 */
+	public void setNulls(Nulls nulls) {
+		this.nulls = nulls;
+	}
 
 	@Before
 	public void contractSetup() throws Exception {
@@ -74,5 +90,20 @@ public abstract class ComparatorContract<T> {
 	@Test
 	public void shouldReturnPositiveOnGreaterThan() throws Exception {
 		assertThat(comparator.compare(value, lesserValue)).isGreaterThan(0);
+	}
+
+	/**
+	 * @since 1.6.6
+	 */
+	@Test
+	public void shouldThrowExceptionIfNullsError() throws Exception {
+		if (nulls != Nulls.ERROR) {
+			return;
+		}
+
+		try {
+			comparator.compare(null, null);
+			failBecauseExceptionWasNotThrown(NullPointerException.class);
+		} catch (NullPointerException e) {}
 	}
 }

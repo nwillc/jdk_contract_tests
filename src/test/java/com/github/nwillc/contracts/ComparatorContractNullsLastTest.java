@@ -16,32 +16,41 @@
 
 package com.github.nwillc.contracts;
 
-import org.assertj.core.util.Preconditions;
+import org.junit.Before;
 
 import java.util.Comparator;
 
-public class ComparatorContractTest extends ComparatorContract<Long> {
+/**
+ * @since 1.6.6
+ */
+public class ComparatorContractNullsLastTest extends ComparatorContractTest {
+
+    @Before
+    public void setUp() throws Exception {
+        setNulls(Nulls.NULLS_LAST);
+    }
 
     @Override
     protected Comparator<Long> getComparator() {
-        return new LongComparator();
+        return new NullLastLongComparator();
     }
 
     @Override
     protected Long getValue() {
-        return 1L;
+        return null;
     }
 
-    @Override
-    protected Long getLesserValue() {
-        return 0L;
-    }
-
-    public static class LongComparator implements Comparator<Long> {
+    public static class NullLastLongComparator implements Comparator<Long> {
         @Override
         public int compare(Long t1, Long t2) {
-            Preconditions.checkNotNull(t1);
-            Preconditions.checkNotNull(t2);
+            if (t1 == null ^ t2 == null) {
+                return (t2 == null) ? -1 : 1;
+            }
+
+            if (t1 == null) {
+                return 0;
+            }
+
             return (int)(t1 - t2);
         }
     }
