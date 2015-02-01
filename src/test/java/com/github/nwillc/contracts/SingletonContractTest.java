@@ -19,7 +19,7 @@ package com.github.nwillc.contracts;
 public class SingletonContractTest extends SingletonContract {
 
     @Override
-    protected Class<?> getClassToTest() {
+    public Class<?> getClassToTest() {
         return UtilityClass.class;
     }
 

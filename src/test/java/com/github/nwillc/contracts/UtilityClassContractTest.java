@@ -18,7 +18,7 @@ package com.github.nwillc.contracts;
 
 public class UtilityClassContractTest extends UtilityClassContract {
     @Override
-    protected Class<?> getClassToTest() {
+    public Class<?> getClassToTest() {
         return UtilityClass.class;
     }
 

@@ -18,7 +18,7 @@ package com.github.nwillc.contracts;
 
 public class NoArgConstructorContractTest extends NoArgConstructorContract {
     @Override
-    protected Class<?> getClassToTest() {
+    public Class<?> getClassToTest() {
         return NoArgConstructor.class;
     }
 

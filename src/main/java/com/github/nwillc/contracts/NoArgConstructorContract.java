@@ -29,8 +29,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *     <li>Presence of a no argument constructor</li>
  * </ul>
  */
-public abstract class NoArgConstructorContract {
-    protected abstract Class<?> getClassToTest();
+public abstract class NoArgConstructorContract implements ClassProvider {
 
     @Test
     public void shouldHaveNoArgConstructor() throws Exception {

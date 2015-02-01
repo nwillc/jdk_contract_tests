@@ -18,7 +18,7 @@ package com.github.nwillc.contracts;
 
 public class PrivateConstructorContractTest extends PrivateConstructorContract {
 	@Override
-	protected Class<?> getClassToTest() {
+	public Class<?> getClassToTest() {
 		return PrivateConstructor.class;
 	}
 

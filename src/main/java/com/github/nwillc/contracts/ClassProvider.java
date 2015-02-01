@@ -16,29 +16,9 @@
 
 package com.github.nwillc.contracts;
 
-import org.junit.Test;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Modifier;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
 /**
- * This contract checks for:
- * <ul>
- *     <li>All constructors are private</li>
- * </ul>
+ * Interface for contracts that require a sample class.
  */
-public abstract class PrivateConstructorContract implements ClassProvider {
-
-    @Test
-    public void shouldHaveOnlyPrivateConstructors() throws Exception {
-        Class<?> actual = getClassToTest();
-        assertThat(actual).isNotNull();
-
-        Constructor<?>[] cons = actual.getDeclaredConstructors();
-        for (Constructor<?> constructor : cons) {
-            assertThat(Modifier.isPrivate(constructor.getModifiers())).describedAs("Only private constructor(s)").isTrue();
-        }
-    }
+interface ClassProvider {
+    Class<?> getClassToTest();
 }
