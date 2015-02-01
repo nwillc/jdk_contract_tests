@@ -16,6 +16,6 @@
 
 /**
  * This is a collection of contract tests to use with JUnit. Each contract defines
- * methods to tests each aspect of the contract associated with a class or pattern.
+ * methods to test conditions of contracts associated with a jdk class or well known pattern.
  */
 package com.github.nwillc.contracts;

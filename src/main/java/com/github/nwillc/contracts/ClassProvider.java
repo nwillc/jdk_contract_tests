@@ -18,6 +18,7 @@ package com.github.nwillc.contracts;
 
 /**
  * Interface for contracts that require a sample class.
+ * @since 1.6.7
  */
 public interface ClassProvider {
     /**
