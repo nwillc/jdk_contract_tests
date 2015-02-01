@@ -14,15 +14,8 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package com.github.nwillc.contracts;
-
 /**
- * Interface for contracts that require a sample class.
+ * This is a collection of contract tests to use with JUnit. Each contract defines
+ * methods to tests each aspect of the contract associated with a class or pattern.
  */
-public interface ClassProvider {
-    /**
-     * Return the class to test.
-     * @return class
-     */
-    Class<?> getClassToTest();
-}
+package com.github.nwillc.contracts;
