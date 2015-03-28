@@ -1,7 +1,7 @@
 ## Links
 - [Home]()
 - [Usage](#docs/usage)
-- [API Docs](./javadoc)
+- [Javadoc](http://www.javadoc.io/doc/com.github.nwillc/jdk_contract_tests)
 - [Example](#docs/example)
 
 ## The Bits
