@@ -14,30 +14,6 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-apply plugin: 'java'
-apply plugin: 'nexus'
-apply plugin: 'release'
-apply plugin: 'com.github.nwillc.vplugin'
-apply plugin: 'jacoco'
-apply plugin: 'com.github.kt3k.coveralls'
-
-
-group = "com.github.nwillc"
-archivesBaseName = "contracts"
-version = "1.6.7"
-targetCompatibility = "1.6"
-sourceCompatibility = "1.6"
-
-repositories {
-    mavenLocal();
-    mavenCentral()
-}
-
-dependencies {
-    compile 'junit:junit:4.12',
-            'org.assertj:assertj-core:1.7.1'
-}
-
 buildscript {
     repositories {
         jcenter()
@@ -50,11 +26,36 @@ buildscript {
     dependencies {
         classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7.1',
                     'org.tmatesoft.sqljet:sqljet:1.1.9',
-                    'au.com.ish.gradle:release:2.2.2',
-                    'com.github.nwillc:vplugin:1.+',
-                    'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
+                    'au.com.ish.gradle:release:2.2.2'
     }
 }
+
+
+plugins {
+    id "java"
+    id "com.github.nwillc.vplugin" version "1.2.1"
+    id "com.github.kt3k.coveralls" version "2.1.0"
+}
+
+repositories {
+    mavenLocal();
+    mavenCentral()
+}
+
+dependencies {
+    compile 'junit:junit:4.12',
+            'org.assertj:assertj-core:1.7.1'
+}
+
+apply plugin: 'nexus'
+apply plugin: 'release'
+apply plugin: 'jacoco'
+
+group = "com.github.nwillc"
+archivesBaseName = "contracts"
+version = "1.6.7"
+targetCompatibility = "1.6"
+sourceCompatibility = "1.6"
 
 jacocoTestReport {
     reports {
