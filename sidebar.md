@@ -5,9 +5,6 @@
 - [Example](#docs/example)
 - [ISC](#docs/LICENSE)
 
-## The Bits
-- [Github Repository](http://github.com/nwillc/jdk_contract_tests)
-
 ## Links
 - [Issue Tracking](https://github.com/nwillc/jdk_contract_tests/issues)
 
@@ -19,3 +16,5 @@
 [![Coverage Status](https://coveralls.io/repos/nwillc/jdk_contract_tests/badge.svg?branch=master)](https://coveralls.io/r/nwillc/jdk_contract_tests?branch=master)
 <br/>
 [![Maven Central](https://repo-redirect.herokuapp.com/shield/maven_central?group=com.github.nwillc&package=contracts)](https://repo-redirect.herokuapp.com/homepage/maven_central?group=com.github.nwillc&package=contracts)
+<br/>
+[![Github](https://repo-redirect.herokuapp.com/shield/github?group=com.github.nwillc&package=contracts)](https://repo-redirect.herokuapp.com/homepage/github?group=com.github.nwillc&package=contracts)
