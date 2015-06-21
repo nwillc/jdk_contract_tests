@@ -18,4 +18,4 @@
 <br/>
 [![Coverage Status](https://coveralls.io/repos/nwillc/jdk_contract_tests/badge.svg?branch=master)](https://coveralls.io/r/nwillc/jdk_contract_tests?branch=master)
 <br/>
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.nwillc/contracts/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.nwillc/contracts)
+[![Maven Central](https://repo-redirect.herokuapp.com/shield/maven_central?group=com.github.nwillc&package=contracts)](https://repo-redirect.herokuapp.com/homepage/maven_central?group=com.github.nwillc&package=contracts)
