@@ -17,4 +17,4 @@
 <br/>
 [![Maven Central](https://repo-redirect.herokuapp.com/shield/maven_central?group=com.github.nwillc&package=contracts)](https://repo-redirect.herokuapp.com/homepage/maven_central?group=com.github.nwillc&package=contracts)
 <br/>
-[![Github](https://repo-redirect.herokuapp.com/shield/github?group=com.github.nwillc&package=contracts)](https://repo-redirect.herokuapp.com/homepage/github?path=nwillc&package=contracts)
+[![Github](https://repo-redirect.herokuapp.com/shield/github?group=com.github.nwillc&package=contracts)](https://repo-redirect.herokuapp.com/homepage/github?path=nwillc&package=jdk_contract_tests)
