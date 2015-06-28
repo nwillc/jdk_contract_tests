@@ -15,6 +15,6 @@
 <br/>
 [![Coverage Status](https://coveralls.io/repos/nwillc/jdk_contract_tests/badge.svg?branch=master)](https://coveralls.io/r/nwillc/jdk_contract_tests?branch=master)
 <br/>
-[![Maven Central](https://repo-redirect.herokuapp.com/shield/maven_central?group=com.github.nwillc&package=contracts)](https://repo-redirect.herokuapp.com/homepage/maven_central?group=com.github.nwillc&package=contracts)
+[![Maven Central](http://shields-nwillc.rhcloud.com/shield/maven_central?group=com.github.nwillc&package=contracts)](http://shields-nwillc.rhcloud.com/homepage/maven_central?group=com.github.nwillc&package=contracts)
 <br/>
-[![Github](https://repo-redirect.herokuapp.com/shield/github?group=com.github.nwillc&package=contracts)](https://repo-redirect.herokuapp.com/homepage/github?path=nwillc&package=jdk_contract_tests)
+[![Github](http://shields-nwillc.rhcloud.com/shield/github?group=com.github.nwillc&package=contracts)](http://shields-nwillc.rhcloud.com/homepage/github?path=nwillc&package=jdk_contract_tests)
