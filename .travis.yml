@@ -6,4 +6,5 @@ jdk:
 env:
   - TERM=dumb
 after_success:
-  - gradle jacocoTestReport coveralls
+  - gradle jacocoTestReport
+  - bash <(curl -s https://codecov.io/bash)
