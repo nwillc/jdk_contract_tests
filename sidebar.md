@@ -13,7 +13,7 @@
 <br/>
 [![Build Status](https://travis-ci.org/nwillc/jdk_contract_tests.svg?branch=master)](https://travis-ci.org/nwillc/jdk_contract_tests)
 <br/>
-[![Coverage Status](https://coveralls.io/repos/nwillc/jdk_contract_tests/badge.svg?branch=master)](https://coveralls.io/r/nwillc/jdk_contract_tests?branch=master)
+[![Coverage Status](http://shields-nwillc.rhcloud.com/shield/codecov?path=github/nwillc&package=jdk_contract_tests)](http://shields-nwillc.rhcloud.com/homepage/codecov?path=github/nwillc&package=jdk_contract_tests)
 <br/>
 [![Maven Central](http://shields-nwillc.rhcloud.com/shield/maven_central?group=com.github.nwillc&package=contracts)](http://shields-nwillc.rhcloud.com/homepage/maven_central?group=com.github.nwillc&package=contracts)
 <br/>
