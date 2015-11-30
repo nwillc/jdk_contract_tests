@@ -16,25 +16,33 @@
 
 buildscript {
     repositories {
-        jcenter()
-        mavenCentral()
+        jcenter {
+            url 'http://jcenter.bintray.com'
+        }
         maven {
-              url 'http://maven.tmatesoft.com/content/repositories/releases/'
-            }
+            url "https://plugins.gradle.org/m2/"
+        }
+        maven {
+            url 'http://maven.tmatesoft.com/content/repositories/releases/'
+        }
     }
 
     dependencies {
-        classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7.1',
-                    'org.tmatesoft.sqljet:sqljet:1.1.9',
-                    'au.com.ish.gradle:release:2.2.2'
+        classpath "gradle.plugin.com.github.nwillc:vplugin:1.2.4",
+                "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4",
+                'au.com.ish.gradle:release:2.2.2',
+                'org.tmatesoft.sqljet:sqljet:1.1.9'
     }
 }
 
 
-plugins {
-    id "java"
-    id "com.github.nwillc.vplugin" version "1.2.1"
-}
+apply plugin: 'release'
+apply plugin: "com.github.nwillc.vplugin"
+apply plugin: 'java'
+apply plugin: "com.jfrog.bintray"
+apply plugin: "maven-publish"
+apply plugin: "jacoco"
+apply plugin: "maven"
 
 repositories {
     mavenLocal();
@@ -46,13 +54,9 @@ dependencies {
             'org.assertj:assertj-core:1.7.1'
 }
 
-apply plugin: 'nexus'
-apply plugin: 'release'
-apply plugin: 'jacoco'
-
 group = "com.github.nwillc"
 archivesBaseName = "contracts"
-version = "1.6.7"
+version = "1.6.8"
 targetCompatibility = "1.6"
 sourceCompatibility = "1.6"
 
@@ -88,40 +92,81 @@ release {
   scm = 'git'
 }
 
-nexus {
-    attachSources = true
-    attachTests = false
-    attachJavadoc = true
-    sign = true
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
 }
 
-modifyPom {
-    project {
-        name 'jdk contract tests'
-        description 'JDK interface contract test for JUnit'
-        url 'https://github.com/nwillc/jdk_contract_tests'
-        inceptionYear '2014'
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
 
-        scm {
-            url 'https://github.com/nwillc/jdk_contract_tests'
-            connection 'scm:https://nwillc@github.com:nwillc/jdk_contract_tests.git'
-            developerConnection 'scm:git:git@github.com:nwillc/jdk_contract_tests.git'
-        }
-
-        licenses {
-            license {
-                name 'ISC'
-                url 'http://www.isc.org/downloads/software-support-policy/isc-license/'
-                distribution 'repo'
-            }
-        }
-
-        developers {
-            developer {
-                id 'nwillc'
-                name 'N Christopher'
-                email 'nwillc@gmail.com'
-            }
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourceJar
+            artifact javadocJar
         }
     }
 }
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_API_KEY')
+
+    dryRun = false
+    publish = true
+    publications = ['mavenJava']
+    pkg {
+        repo = 'maven'
+        name = project.name
+        desc = 'JDK interface contract test for JUnit'
+        websiteUrl = 'https://github.com/nwillc/jdk_contract_tests'
+        issueTrackerUrl = 'https://github.com/nwillc/jdk_contract_tests/issues'
+        vcsUrl = 'https://nwillc@github.com:nwillc/jdk_contract_tests.git'
+        licenses = ['ISC']
+        labels = [project.name]
+        publicDownloadNumbers = true
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+
+//modifyPom {
+//    project {
+//        name 'jdk contract tests'
+//        description 'JDK interface contract test for JUnit'
+//        url 'https://github.com/nwillc/jdk_contract_tests'
+//        inceptionYear '2014'
+//
+//        scm {
+//            url 'https://github.com/nwillc/jdk_contract_tests'
+//            connection 'scm:https://nwillc@github.com:nwillc/jdk_contract_tests.git'
+//            developerConnection 'scm:git:git@github.com:nwillc/jdk_contract_tests.git'
+//        }
+//
+//        licenses {
+//            license {
+//                name 'ISC'
+//                url 'http://www.isc.org/downloads/software-support-policy/isc-license/'
+//                distribution 'repo'
+//            }
+//        }
+//
+//        developers {
+//            developer {
+//                id 'nwillc'
+//                name 'N Christopher'
+//                email 'nwillc@gmail.com'
+//            }
+//        }
+//    }
+//}
