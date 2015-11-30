@@ -1,26 +1,32 @@
 package com.github.nwillc.contracts;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  */
 public class EqualsContractTest extends EqualsContract<EqualsContractTest.Sample> {
 
-	@Override
-	protected Sample getEqualsInstance() {
-		return new Sample(1, "foo");
-	}
+    @Override
+    protected List<Sample> getEquals() {
+        List<Sample> samples = new ArrayList<Sample>();
+        samples.add(new Sample(1, "foo"));
+        samples.add(new Sample(1, "foo"));
+        return samples;
+    }
 
-	@Override
-	protected Sample getInstance() {
-		return new Sample(1, "foo");
-	}
+    @Override
+    protected List<Sample> getNotEquals() {
+        List<Sample> samples = new ArrayList<Sample>();
+        samples.add(new Sample(1, "foo"));
+        samples.add(new SubSample(1, "foo"));
+        samples.add(new Sample(1, "bar"));
+        samples.add(new Sample(2, "foo"));
+        return samples;
+    }
 
-	@Override
-	protected Sample getNotEqualInstance() {
-		return new Sample(1, "bar");
-	}
-
-	 static class Sample {
+    static class Sample {
 		private final String label;
 		private final int count;
 
@@ -45,7 +51,14 @@ public class EqualsContractTest extends EqualsContract<EqualsContractTest.Sample
 		public int hashCode() {
 			int result = label.hashCode();
 			result = 31 * result + count;
+            result = 31 * result + getClass().getSimpleName().hashCode();
 			return result;
 		}
 	}
+
+    static class SubSample extends Sample {
+        public SubSample(int count, String label) {
+            super(count, label);
+        }
+    }
 }

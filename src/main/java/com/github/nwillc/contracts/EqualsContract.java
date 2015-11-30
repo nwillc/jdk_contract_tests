@@ -2,52 +2,96 @@ package com.github.nwillc.contracts;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
+ * This contract checks:
+ * <ul>
+ *     <li>That all the members of the Equals list are equal to one another</li>
+ *     <li>That all the members of the NotEquals list are not equal to the others</li>
+ *     <li>That hashCodes are also consistent as above.</li>
+ *     <li>That null is safely viewed as not equals</li>
+ * </ul>
+ * Depending on how your equals handles subclasses you should include appropriate examples in your lists.
  * @since 1.6.8
- * @param <T>
+ * @param <T> type to test on
  */
 public abstract class EqualsContract<T> {
-	protected abstract T getInstance();
-	protected abstract T getEqualsInstance();
-	protected abstract T getNotEqualInstance();
+
+    /**
+     * List of type T which are all equals based on your implementation of equals. If your
+     * equals allows subclasses, include an example.
+     * @return List of instances
+     */
+	protected abstract List<T> getEquals();
+
+    /**
+     * List of type T which are not equal based on your implementation of equals. If your
+     * equals disallows subclasses, include an subclass.
+     * @return List of instances
+     */
+	protected abstract List<T> getNotEquals();
 
 	@Test
-	public void testSameObject() throws Exception {
-		T instance = getInstance();
-		assertThat(instance).isEqualTo(instance);
-	}
+    public void testEquals() throws Exception {
+        List<T> instances = getEquals();
+        assertThat(instances).isNotEmpty();
 
-	@Test
-	public void testWrongClassType() throws Exception {
-		assertThat(getInstance()).isNotEqualTo("foo");
-	}
+        for (T t1 : instances) {
+            for (T t2 : instances) {
+                assertThat(t1).isEqualTo(t2);
+            }
+        }
+    }
 
-	@Test
-	public void testEquals() throws Exception {
-		assertThat(getInstance()).isEqualTo(getEqualsInstance());
-		assertThat(getEqualsInstance()).isEqualTo(getInstance());
-	}
+    @Test
+    public void testNullValue() throws Exception {
+        List<T> instances = getEquals();
+        assertThat(instances).isNotEmpty();
 
-	@Test
-	public void testNotEquals() throws Exception {
-		assertThat(getInstance()).isNotEqualTo(getNotEqualInstance());
-		assertThat(getEqualsInstance()).isNotEqualTo(getNotEqualInstance());
-	}
+        assertThat(instances.get(0).equals(null)).isFalse();
+    }
 
-	@Test
-	public void testHandlesNull() throws Exception {
-		assertThat(getInstance()).isNotEqualTo(null);
-	}
+    @Test
+    public void testNotEquals() throws Exception {
+        List<T> instances = getNotEquals();
+        assertThat(instances).isNotEmpty();
 
-	@Test
-	public void testHashEquals() throws Exception {
-		assertThat(getInstance().hashCode()).isEqualTo(getEqualsInstance().hashCode());
-	}
+        for (T t1 : instances) {
+            for (T t2 : instances) {
+                if (t1 != t2) {
+                    assertThat(t1).isNotEqualTo(t2);
+                }
+            }
+        }
+    }
 
-	@Test
-	public void testHashNotEquals() throws Exception {
-		assertThat(getInstance().hashCode()).isNotEqualTo(getNotEqualInstance().hashCode());
-	}
+    @Test
+    public void testEqualHashes() throws Exception {
+        List<T> instances = getEquals();
+        assertThat(instances).isNotEmpty();
+
+        for (T t1 : instances) {
+            for (T t2 : instances) {
+                assertThat(t1.hashCode()).isEqualTo(t2.hashCode());
+            }
+        }
+    }
+
+
+    @Test
+    public void testNotEqualHashes() throws Exception {
+        List<T> instances = getNotEquals();
+        assertThat(instances).isNotEmpty();
+
+        for (T t1 : instances) {
+            for (T t2 : instances) {
+                if (t1 != t2) {
+                    assertThat(t1.hashCode()).isNotEqualTo(t2.hashCode());
+                }
+            }
+        }
+    }
 }

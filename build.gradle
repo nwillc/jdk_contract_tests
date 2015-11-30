@@ -44,8 +44,9 @@ apply plugin: "jacoco"
 apply plugin: "maven"
 
 repositories {
-    mavenLocal();
-    mavenCentral()
+    jcenter {
+        url 'http://jcenter.bintray.com'
+    }
 }
 
 dependencies {
@@ -55,7 +56,7 @@ dependencies {
 
 group = "com.github.nwillc"
 archivesBaseName = "contracts"
-version = "1.6.8"
+version = "1.6.9"
 targetCompatibility = "1.6"
 sourceCompatibility = "1.6"
 
