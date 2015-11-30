@@ -35,7 +35,6 @@ buildscript {
     }
 }
 
-
 apply plugin: 'release'
 apply plugin: "com.github.nwillc.vplugin"
 apply plugin: 'java'
@@ -138,35 +137,3 @@ jacocoTestReport {
         html.enabled = true
     }
 }
-
-
-//modifyPom {
-//    project {
-//        name 'jdk contract tests'
-//        description 'JDK interface contract test for JUnit'
-//        url 'https://github.com/nwillc/jdk_contract_tests'
-//        inceptionYear '2014'
-//
-//        scm {
-//            url 'https://github.com/nwillc/jdk_contract_tests'
-//            connection 'scm:https://nwillc@github.com:nwillc/jdk_contract_tests.git'
-//            developerConnection 'scm:git:git@github.com:nwillc/jdk_contract_tests.git'
-//        }
-//
-//        licenses {
-//            license {
-//                name 'ISC'
-//                url 'http://www.isc.org/downloads/software-support-policy/isc-license/'
-//                distribution 'repo'
-//            }
-//        }
-//
-//        developers {
-//            developer {
-//                id 'nwillc'
-//                name 'N Christopher'
-//                email 'nwillc@gmail.com'
-//            }
-//        }
-//    }
-//}
