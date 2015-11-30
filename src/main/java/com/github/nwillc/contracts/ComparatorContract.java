@@ -102,6 +102,7 @@ public abstract class ComparatorContract<T> {
 
 	/**
 	 * @since 1.6.6
+     * @throws Exception on error
 	 */
 	@Test
 	public void shouldThrowExceptionIfNullsError() throws Exception {

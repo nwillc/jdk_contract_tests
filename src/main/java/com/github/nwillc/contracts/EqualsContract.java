@@ -15,6 +15,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *     <li>That null is safely viewed as not equals</li>
  * </ul>
  * Depending on how your equals handles subclasses you should include appropriate examples in your lists.
+ *
+ * <P><b>NB:</b> While hashcode equivalence is supposed to parallel equals results, there is one exception. While equals
+ * often considers the instance's classes, hashcode rarely does. So while a subclass with the same values may
+ * fail to be "equal" it may still have the same hashcode. This contract therefore only compares hashcodes of the same class.</P>
  * @since 1.6.8
  * @param <T> type to test on
  */
@@ -88,7 +92,7 @@ public abstract class EqualsContract<T> {
 
         for (T t1 : instances) {
             for (T t2 : instances) {
-                if (t1 != t2) {
+                if (t1 != t2 && t1.getClass() == t2.getClass()) {
                     assertThat(t1.hashCode()).isNotEqualTo(t2.hashCode());
                 }
             }
