@@ -1,8 +1,6 @@
 language: java
 jdk:
 - openjdk6
-- oraclejdk7
-- oraclejdk8
 env:
 - TERM=dumb
 after_success:
@@ -14,5 +12,4 @@ deploy:
   provider: bintray
   file: build/tmp/bintray.json
   user: nwillc
-  key:
-    secure: JghnBGfNkkjzto3OkaURjgzNVbb3Z6jy3fm0Rk/lots95fOUN7iKzwuhHvhDH2FSxuR78fWyvN0v+4n+X2m2m9V2rk+y/B01p/LAkCaflChCS6+tuwR8qmuTTt/zoJAet2mgktReWDXW+8g0GZXgidFkAOYBMDeFNSg5GKF1Blk=
+  key: 6ef5847735e93d3665267d183c8243de8a41fd1c
