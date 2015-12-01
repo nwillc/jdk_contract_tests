@@ -58,7 +58,7 @@ dependencies {
 
 group = "com.github.nwillc"
 archivesBaseName = "contracts"
-version = "1.7.0"
+version = "1.7.1"
 targetCompatibility = "1.6"
 sourceCompatibility = "1.6"
 
