@@ -14,6 +14,8 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+import org.apache.tools.ant.filters.ReplaceTokens
+
 buildscript {
     repositories {
         jcenter {
@@ -62,7 +64,7 @@ sourceCompatibility = "1.6"
 
 jacocoTestReport {
     reports {
-        xml.enabled = true // coveralls plugin depends on xml format report
+        xml.enabled = true
         html.enabled = true
     }
 }
@@ -137,4 +139,15 @@ jacocoTestReport {
         xml.enabled = true
         html.enabled = true
     }
+}
+
+task filter(type: Copy) {
+    from 'src/json/bintray.json'
+    into 'build/tmp'
+
+    filter(ReplaceTokens, tokens: [
+            BINTRAY_USER: 'nwillc',
+            VERSION: project.version,
+            NAME: project.name
+    ])
 }

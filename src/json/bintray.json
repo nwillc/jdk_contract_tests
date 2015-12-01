@@ -1,0 +1,25 @@
+{
+    "package": {
+        "name": "@NAME@",
+        "repo": "maven",
+        "subject": "@BINTRAY_USER@",
+        "desc": "JDK interface contract test for JUnit",
+        "website_url": "https://github.com/nwillc/jdk_contract_tests",
+        "issue_tracker_url": "https://github.com/nwillc/jdk_contract_tests/issues",
+        "vcs_url": "https://nwillc@github.com:nwillc/jdk_contract_tests.git",
+        "licenses": ["ISC"],
+        "public_download_numbers": false,
+        "public_stats": false
+    },
+
+    "version": {
+        "name": "@VERSION@"
+    },
+
+    "files":
+        [
+        {"includePattern": "build/bin(.*)*/(.*\.gem)", "excludePattern": ".*/do-not-deploy/.*", "uploadPattern": "gems/$2"},
+        {"includePattern": "build/docs/(.*)", "uploadPattern": "docs/$1"}
+        ],
+    "publish": true
+}
