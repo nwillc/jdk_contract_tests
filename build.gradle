@@ -58,7 +58,7 @@ dependencies {
 
 group = "com.github.nwillc"
 archivesBaseName = "contracts"
-version = "1.6.9"
+version = "1.7.0"
 targetCompatibility = "1.6"
 sourceCompatibility = "1.6"
 
@@ -138,6 +138,12 @@ jacocoTestReport {
     reports {
         xml.enabled = true
         html.enabled = true
+    }
+}
+
+model {
+    tasks.generatePomFileForMavenJavaPublication {
+        destination = file("$buildDir/libs/" + project.name + "-" + project.version + ".pom")
     }
 }
 
