@@ -1,10 +1,18 @@
 language: java
 jdk:
-  - openjdk6
-  - oraclejdk7
-  - oraclejdk8
+- openjdk6
+- oraclejdk7
+- oraclejdk8
 env:
-  - TERM=dumb
+- TERM=dumb
 after_success:
-  - gradle jacocoTestReport
-  - bash <(curl -s https://codecov.io/bash)
+- gradle jacocoTestReport
+- bash <(curl -s https://codecov.io/bash)
+before_deploy:
+- gradle clean build sourceJar javadocJar generatePomFileForMavenJavaPublication -x test
+deploy:
+  provider: bintray
+  file: build/tmp/bintray.json
+  user: nwillc
+  key:
+    secure: JghnBGfNkkjzto3OkaURjgzNVbb3Z6jy3fm0Rk/lots95fOUN7iKzwuhHvhDH2FSxuR78fWyvN0v+4n+X2m2m9V2rk+y/B01p/LAkCaflChCS6+tuwR8qmuTTt/zoJAet2mgktReWDXW+8g0GZXgidFkAOYBMDeFNSg5GKF1Blk=

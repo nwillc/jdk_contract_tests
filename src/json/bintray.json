@@ -18,8 +18,8 @@
 
     "files":
         [
-        {"includePattern": "build/libs/(.*\\.jar)", "uploadPattern": "com/github/nwillc/contract/@VERSION@"},
-        {"includePattern": "build/libs/(.*\\.pom)", "uploadPattern": "com/github/nwillc/contract/@VERSION@"}
+        {"includePattern": "build/libs/(.*\\.jar)", "uploadPattern": "com/github/nwillc/@NAME@/@VERSION@"},
+        {"includePattern": "build/libs/(.*\\.pom)", "uploadPattern": "com/github/nwillc/@NAME@/@VERSION@"}
         ],
     "publish": true
 }
