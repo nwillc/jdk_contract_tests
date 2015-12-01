@@ -6,10 +6,3 @@ env:
 after_success:
 - gradle jacocoTestReport
 - bash <(curl -s https://codecov.io/bash)
-before_deploy:
-- gradle clean build sourceJar javadocJar generatePomFileForMavenJavaPublication filter -x test
-deploy:
-  provider: bintray
-  file: build/tmp/bintray.json
-  user: nwillc
-  key: 6ef5847735e93d3665267d183c8243de8a41fd1c

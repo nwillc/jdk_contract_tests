@@ -14,8 +14,6 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-import org.apache.tools.ant.filters.ReplaceTokens
-
 buildscript {
     repositories {
         jcenter {
@@ -139,21 +137,4 @@ jacocoTestReport {
         xml.enabled = true
         html.enabled = true
     }
-}
-
-model {
-    tasks.generatePomFileForMavenJavaPublication {
-        destination = file("$buildDir/libs/contracts-" + project.version + ".pom")
-    }
-}
-
-task filter(type: Copy) {
-    from 'src/json/bintray.json'
-    into 'build/tmp'
-
-    filter(ReplaceTokens, tokens: [
-            BINTRAY_USER: 'nwillc',
-            VERSION: project.version,
-            NAME: 'contracts'
-    ])
 }
