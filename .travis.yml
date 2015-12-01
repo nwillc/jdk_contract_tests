@@ -9,7 +9,7 @@ after_success:
 - gradle jacocoTestReport
 - bash <(curl -s https://codecov.io/bash)
 before_deploy:
-- gradle clean build sourceJar javadocJar generatePomFileForMavenJavaPublication -x test
+- gradle clean build sourceJar javadocJar generatePomFileForMavenJavaPublication filter -x test
 deploy:
   provider: bintray
   file: build/tmp/bintray.json
