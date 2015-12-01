@@ -143,7 +143,7 @@ jacocoTestReport {
 
 model {
     tasks.generatePomFileForMavenJavaPublication {
-        destination = file("$buildDir/libs/" + project.name + "-" + project.version + ".pom")
+        destination = file("$buildDir/libs/contracts-" + project.version + ".pom")
     }
 }
 
@@ -154,6 +154,6 @@ task filter(type: Copy) {
     filter(ReplaceTokens, tokens: [
             BINTRAY_USER: 'nwillc',
             VERSION: project.version,
-            NAME: project.name
+            NAME: 'contracts'
     ])
 }
