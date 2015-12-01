@@ -18,8 +18,8 @@
 
     "files":
         [
-        {"includePattern": "build/bin(.*)*/(.*\.gem)", "excludePattern": ".*/do-not-deploy/.*", "uploadPattern": "gems/$2"},
-        {"includePattern": "build/docs/(.*)", "uploadPattern": "docs/$1"}
+        {"includePattern": "build/libs/(.*\\.jar)", "uploadPattern": "com/github/nwillc/contract/@VERSION@"},
+        {"includePattern": "build/libs/(.*\\.pom)", "uploadPattern": "com/github/nwillc/contract/@VERSION@"}
         ],
     "publish": true
 }
