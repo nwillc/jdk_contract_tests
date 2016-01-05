@@ -4,6 +4,6 @@ jdk:
 env:
 - TERM=dumb
 after_success:
-- gradle jacocoTestReport
+- "./gradlew jacocoTestReport"
 - bash <(curl -s https://codecov.io/bash)
-- gradle clean jar bintray -x test
+- "./gradlew clean jar bintray -x test"
