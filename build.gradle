@@ -16,11 +16,12 @@
 
 buildscript {
     repositories {
+        mavenLocal()
         jcenter {
             url 'http://jcenter.bintray.com'
         }
         maven {
-            url "https://plugins.gradle.org/m2/"
+            url 'https://plugins.gradle.org/m2/'
         }
         maven {
             url 'http://maven.tmatesoft.com/content/repositories/releases/'
@@ -28,15 +29,15 @@ buildscript {
     }
 
     dependencies {
-        classpath "gradle.plugin.com.github.nwillc:vplugin:1.2.4",
-                "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4",
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4',
+                'gradle.plugin.com.github.nwillc:vplugin:1.2.4',
                 'au.com.ish.gradle:release:2.2.2',
                 'org.tmatesoft.sqljet:sqljet:1.1.9'
     }
 }
 
 apply plugin: 'release'
-apply plugin: "com.github.nwillc.vplugin"
+apply plugin: 'com.github.nwillc.vplugin'
 apply plugin: 'java'
 apply plugin: "com.jfrog.bintray"
 apply plugin: "maven-publish"
@@ -44,6 +45,7 @@ apply plugin: "jacoco"
 apply plugin: "maven"
 
 repositories {
+    mavenLocal()
     jcenter {
         url 'http://jcenter.bintray.com'
     }
@@ -86,10 +88,10 @@ test {
 }
 
 release {
-  failOnSnapshotDependencies = true
-  allowLocalModifications = true
-  releaseDryRun = false
-  scm = 'git'
+    failOnSnapshotDependencies = true
+    allowLocalModifications = true
+    releaseDryRun = false
+    scm = 'git'
 }
 
 task sourceJar(type: Jar) {
