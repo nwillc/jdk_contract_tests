@@ -1,7 +1,7 @@
 ## JDK Contracts
 - [Home]()
 - [Usage](#docs/usage)
-- [Javadoc](http://www.javadoc.io/doc/com.github.nwillc/contracts)
+- [Javadoc](javadoc)
 - [Example](#docs/example)
 - [ISC](#docs/LICENSE)
 
