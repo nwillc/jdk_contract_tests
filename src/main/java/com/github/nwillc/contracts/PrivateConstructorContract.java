@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * This contract checks for:
  * <ul>
- *     <li>All constructors are private</li>
+ * <li>All constructors are private</li>
  * </ul>
  */
 public abstract class PrivateConstructorContract implements ClassProvider {
@@ -39,4 +39,13 @@ public abstract class PrivateConstructorContract implements ClassProvider {
             assertThat(Modifier.isPrivate(constructor.getModifiers())).describedAs("Only private constructor(s)").isTrue();
         }
     }
+
+    @Test
+    public void testPrivateConstructor() throws Exception {
+        Constructor<?> constructor = getClassToTest().getDeclaredConstructor();
+        assertThat(Modifier.isPrivate(constructor.getModifiers())).isTrue();
+        constructor.setAccessible(true);
+        constructor.newInstance();
+    }
+
 }
