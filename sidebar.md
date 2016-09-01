@@ -15,6 +15,6 @@
 <br/>
 [![Coverage Status](http://shields-nwillc.rhcloud.com/shield/codecov?path=github/nwillc&package=jdk_contract_tests)](http://shields-nwillc.rhcloud.com/homepage/codecov?path=github/nwillc&package=jdk_contract_tests)
 <br/>
-[![Download](http://shields-nwillc.rhcloud.com/shield/jcenter?path=nwillc&package=contracts)](http://shields-nwillc.rhcloud.com/homepage/jcenter?group=com.github.nwillc&package=contracts&path=nwillc/maven/contracts)
+[![Download](http://shields-nwillc.rhcloud.com/shield/jcenter?path=nwillc&package=jdk_contract_tests)](http://shields-nwillc.rhcloud.com/homepage/jcenter?group=com.github.nwillc&package=jdk_contract_tests&path=nwillc/maven/jdk_contract_tests)
 <br/>
 [![Github](http://shields-nwillc.rhcloud.com/shield/github?group=com.github.nwillc&package=contracts)](http://shields-nwillc.rhcloud.com/homepage/github?path=nwillc&package=jdk_contract_tests)
