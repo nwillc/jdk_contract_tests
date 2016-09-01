@@ -1,9 +1,9 @@
 # Usage
 
-Almost functional is available via the Maven central repository so the easiest route to use it is add the following to you `pom.xml`:
+Almost functional is available via the jcenter repository so the easiest route to use it is add the following to you `pom.xml`:
 
 	<dependency>
 		<groupId>com.github.nwillc</groupId>
-		<artifactId>contracts</artifactId>
-		<version>1.0</version>
+		<artifactId>jdk_contract_tests</artifactId>
+		<version>1.7.6</version>
 	</dependency>
