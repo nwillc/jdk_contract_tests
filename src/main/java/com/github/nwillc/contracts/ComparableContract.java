@@ -16,6 +16,7 @@ package com.github.nwillc.contracts;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Fail.failBecauseExceptionWasNotThrown;
@@ -23,11 +24,11 @@ import static org.assertj.core.api.Fail.failBecauseExceptionWasNotThrown;
 /**
  * This contract checks:
  * <ul>
- *     <li>compareTo with null argument throws NullPointerException</li>
- *     <li>compareTo with argument that can't be cast to correct type throws ClassCastException</li>
- *     <li>returns 0 on equality</li>
- *     <li>returns less then zero on less then</li>
- *     <li>returns greater then zero on greater</li>
+ * <li>compareTo with null argument throws NullPointerException</li>
+ * <li>compareTo with argument that can't be cast to correct type throws ClassCastException</li>
+ * <li>returns 0 on equality</li>
+ * <li>returns less then zero on less then</li>
+ * <li>returns greater then zero on greater</li>
  * </ul>
  */
 @SuppressWarnings("unchecked")
@@ -37,9 +38,12 @@ public abstract class ComparableContract<T extends Comparable> {
 	private T lesserValue;
 
 	protected abstract T getValue();
+
 	protected abstract T getEqualToValue();
+
 	protected abstract T getLessThanValue();
 
+	@BeforeEach
 	@Before
 	public void contractSetup() throws Exception {
 		value = getValue();
@@ -50,33 +54,40 @@ public abstract class ComparableContract<T extends Comparable> {
 		assertThat(lesserValue).isNotNull();
 	}
 
+	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldThrowExceptionForNull() throws Exception {
 		try {
 			value.compareTo(null);
 			failBecauseExceptionWasNotThrown(NullPointerException.class);
-		} catch (NullPointerException e) {}
+		} catch (NullPointerException e) {
+		}
 	}
 
 	@SuppressWarnings("unchecked")
+	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldThrowExceptionForBadCast() throws Exception {
 		try {
 			value.compareTo(this);
 			failBecauseExceptionWasNotThrown(ClassCastException.class);
-		} catch (ClassCastException e) {}
+		} catch (ClassCastException e) {
+		}
 	}
 
+	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldReturnZeroOnEquality() throws Exception {
 		assertThat(value.compareTo(equalValue)).isEqualTo(0);
 	}
 
+	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldReturnNegativeOnLessThan() throws Exception {
 		assertThat(lesserValue.compareTo(value)).isLessThan(0);
 	}
 
+	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldReturnPositiveOnGreaterThan() throws Exception {
 		assertThat(value.compareTo(lesserValue)).isGreaterThan(0);

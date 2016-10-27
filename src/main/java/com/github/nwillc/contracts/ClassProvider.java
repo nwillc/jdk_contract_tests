@@ -16,12 +16,14 @@ package com.github.nwillc.contracts;
 
 /**
  * Interface for contracts that require a sample class.
+ *
  * @since 1.6.7
  */
 public interface ClassProvider {
-    /**
-     * Return the class to test.
-     * @return class
-     */
-    Class<?> getClassToTest();
+	/**
+	 * Return the class to test.
+	 *
+	 * @return class
+	 */
+	Class<?> getClassToTest();
 }

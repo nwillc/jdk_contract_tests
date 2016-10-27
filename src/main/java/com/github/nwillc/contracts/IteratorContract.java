@@ -27,81 +27,85 @@ import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 /**
  * This contract checks for:
  * <ul>
- *     <li>hasNext does not advance the iterator</li>
- *     <li>next advances the iterator</li>
- *     <li>hasNext returns false after end of iterator</li>
- *     <li>next after end of iterator throws NoSuchElementException</li>
+ * <li>hasNext does not advance the iterator</li>
+ * <li>next advances the iterator</li>
+ * <li>hasNext returns false after end of iterator</li>
+ * <li>next after end of iterator throws NoSuchElementException</li>
  * </ul>
  */
 public abstract class IteratorContract {
-    private static final Logger LOGGER = Logger.getLogger(ImmutableIteratorContract.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(ImmutableIteratorContract.class.getName());
 
-    protected abstract Iterator getNonEmptyIterator();
+	protected abstract Iterator getNonEmptyIterator();
 
-    @Test
-    public void hasNextShouldNotAdvanceIterator() throws Exception {
-        int count = count(getNonEmptyIterator());
-        assertThat(count).as("Iterator should be non empty").isGreaterThan(0);
+	@org.junit.jupiter.api.Test
+	@Test
+	public void hasNextShouldNotAdvanceIterator() throws Exception {
+		int count = count(getNonEmptyIterator());
+		assertThat(count).as("Iterator should be non empty").isGreaterThan(0);
 
-        Iterator iterator = getNonEmptyIterator();
+		Iterator iterator = getNonEmptyIterator();
 
-        while (count > 0) {
-            count--;
-            iterator.hasNext();
-        }
+		while (count > 0) {
+			count--;
+			iterator.hasNext();
+		}
 
-        assertThat(iterator.hasNext()).as("hasNest should not advance iterator").isTrue();
-    }
+		assertThat(iterator.hasNext()).as("hasNest should not advance iterator").isTrue();
+	}
 
-    @Test
-    public void nextShouldAdvanceIterator() throws Exception {
-        int count = count(getNonEmptyIterator());
-        assertThat(count).as("Iterator should be non empty").isGreaterThan(0);
+	@Test
+	public void nextShouldAdvanceIterator() throws Exception {
+		int count = count(getNonEmptyIterator());
+		assertThat(count).as("Iterator should be non empty").isGreaterThan(0);
 
-        Iterator iterator = getNonEmptyIterator();
+		Iterator iterator = getNonEmptyIterator();
 
-        while (count > 0) {
-            count--;
-            iterator.next();
-        }
+		while (count > 0) {
+			count--;
+			iterator.next();
+		}
 
-        assertThat(iterator.hasNext()).as("next should not advance iterator").isFalse();
-    }
+		assertThat(iterator.hasNext()).as("next should not advance iterator").isFalse();
+	}
 
-    @Test
-    public void hasNextPastEnd() throws Exception {
-        Iterator iterator = getNonEmptyIterator();
+	@org.junit.jupiter.api.Test
+	@Test
+	public void hasNextPastEnd() throws Exception {
+		Iterator iterator = getNonEmptyIterator();
 
-        try {
-            while (true) {
-                iterator.next();
-            }
-        } catch (NoSuchElementException e) {}
+		try {
+			while (true) {
+				iterator.next();
+			}
+		} catch (NoSuchElementException e) {
+		}
 
-        assertThat(iterator.hasNext()).as("hasNext past end of iterator").isFalse();
-    }
+		assertThat(iterator.hasNext()).as("hasNext past end of iterator").isFalse();
+	}
 
-    @Test
-    public void shouldNotPassEndOfIterator() throws Exception {
-        Iterator anIterator = getNonEmptyIterator();
-        assertThat(anIterator).isNotNull();
-        while (anIterator.hasNext()) {
-            anIterator.next();
-        }
-        try {
-            anIterator.next();
-            failBecauseExceptionWasNotThrown(NoSuchElementException.class);
-        } catch (NoSuchElementException e) {
-            LOGGER.fine("Caught expected " + e);
-        }
-    }
+	@org.junit.jupiter.api.Test
+	@Test
+	public void shouldNotPassEndOfIterator() throws Exception {
+		Iterator anIterator = getNonEmptyIterator();
+		assertThat(anIterator).isNotNull();
+		while (anIterator.hasNext()) {
+			anIterator.next();
+		}
+		try {
+			anIterator.next();
+			failBecauseExceptionWasNotThrown(NoSuchElementException.class);
+		} catch (NoSuchElementException e) {
+			LOGGER.fine("Caught expected " + e);
+		}
+	}
 
-    private int count(Iterator iterator) {
-        int count = 0;
-        while (iterator.hasNext()) {
-            count++;
-            iterator.next();
-        }
-        return count;
-    }
+	private int count(Iterator iterator) {
+		int count = 0;
+		while (iterator.hasNext()) {
+			count++;
+			iterator.next();
+		}
+		return count;
+	}
 }

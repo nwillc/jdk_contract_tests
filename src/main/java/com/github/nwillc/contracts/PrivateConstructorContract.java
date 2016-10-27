@@ -29,23 +29,25 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public abstract class PrivateConstructorContract implements ClassProvider {
 
-    @Test
-    public void shouldHaveOnlyPrivateConstructors() throws Exception {
-        Class<?> actual = getClassToTest();
-        assertThat(actual).isNotNull();
+	@org.junit.jupiter.api.Test
+	@Test
+	public void shouldHaveOnlyPrivateConstructors() throws Exception {
+		Class<?> actual = getClassToTest();
+		assertThat(actual).isNotNull();
 
-        Constructor<?>[] cons = actual.getDeclaredConstructors();
-        for (Constructor<?> constructor : cons) {
-            assertThat(Modifier.isPrivate(constructor.getModifiers())).describedAs("Only private constructor(s)").isTrue();
-        }
-    }
+		Constructor<?>[] cons = actual.getDeclaredConstructors();
+		for (Constructor<?> constructor : cons) {
+			assertThat(Modifier.isPrivate(constructor.getModifiers())).describedAs("Only private constructor(s)").isTrue();
+		}
+	}
 
-    @Test
-    public void testPrivateConstructor() throws Exception {
-        Constructor<?> constructor = getClassToTest().getDeclaredConstructor();
-        assertThat(Modifier.isPrivate(constructor.getModifiers())).isTrue();
-        constructor.setAccessible(true);
-        constructor.newInstance();
-    }
+	@org.junit.jupiter.api.Test
+	@Test
+	public void testPrivateConstructor() throws Exception {
+		Constructor<?> constructor = getClassToTest().getDeclaredConstructor();
+		assertThat(Modifier.isPrivate(constructor.getModifiers())).isTrue();
+		constructor.setAccessible(true);
+		constructor.newInstance();
+	}
 
 }

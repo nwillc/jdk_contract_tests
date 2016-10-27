@@ -24,29 +24,31 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * This contract checks for:
  * <ul>
- *     <li>Private constructors only</li>
- *     <li>Class should be final</li>
- *     <li>All methods declared should be static</li>
+ * <li>Private constructors only</li>
+ * <li>Class should be final</li>
+ * <li>All methods declared should be static</li>
  * </ul>
  */
 public abstract class UtilityClassContract extends PrivateConstructorContract {
 
-    @Test
-    public void shouldBeFinal() throws Exception {
-        Class<?> actual = getClassToTest();
-        assertThat(actual).isNotNull();
-        final int modifiers = actual.getModifiers();
-        assertThat(Modifier.isFinal(modifiers)).describedAs("Class should be final").isTrue();
-    }
+	@org.junit.jupiter.api.Test
+	@Test
+	public void shouldBeFinal() throws Exception {
+		Class<?> actual = getClassToTest();
+		assertThat(actual).isNotNull();
+		final int modifiers = actual.getModifiers();
+		assertThat(Modifier.isFinal(modifiers)).describedAs("Class should be final").isTrue();
+	}
 
-    @Test
-    public void shouldHaveOnlyStaticMethods() throws Exception {
-        Class<?> actual = getClassToTest();
-        assertThat(actual).isNotNull();
-        for (Method method : actual.getMethods()) {
-            if (method.getDeclaringClass() == actual) {
-                assertThat(Modifier.isStatic(method.getModifiers())).describedAs("Method is static: %s", method.getName()).isTrue();
-            }
-        }
-    }
+	@org.junit.jupiter.api.Test
+	@Test
+	public void shouldHaveOnlyStaticMethods() throws Exception {
+		Class<?> actual = getClassToTest();
+		assertThat(actual).isNotNull();
+		for (Method method : actual.getMethods()) {
+			if (method.getDeclaringClass() == actual) {
+				assertThat(Modifier.isStatic(method.getModifiers())).describedAs("Method is static: %s", method.getName()).isTrue();
+			}
+		}
+	}
 }

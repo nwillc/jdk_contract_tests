@@ -25,21 +25,22 @@ import static org.assertj.core.api.Fail.failBecauseExceptionWasNotThrown;
 /**
  * This contract checks for:
  * <ul>
- *     <li>The iterator's remove throws UnsupportedOperationException</li>
+ * <li>The iterator's remove throws UnsupportedOperationException</li>
  * </ul>
  */
 public abstract class ImmutableIteratorContract extends IteratorContract {
- 	private static final Logger LOGGER = Logger.getLogger(ImmutableIteratorContract.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(ImmutableIteratorContract.class.getName());
 
-    @Test
-    public void shouldNotImplementRemove() throws Exception {
-        Iterator iterator = getNonEmptyIterator();
-        assertThat(iterator).isNotNull();
-        try {
-            iterator.remove();
-            failBecauseExceptionWasNotThrown(UnsupportedOperationException.class);
-        } catch (UnsupportedOperationException e) {
-		  LOGGER.fine("Caught expected " + e);
-        }
-    }
+	@org.junit.jupiter.api.Test
+	@Test
+	public void shouldNotImplementRemove() throws Exception {
+		Iterator iterator = getNonEmptyIterator();
+		assertThat(iterator).isNotNull();
+		try {
+			iterator.remove();
+			failBecauseExceptionWasNotThrown(UnsupportedOperationException.class);
+		} catch (UnsupportedOperationException e) {
+			LOGGER.fine("Caught expected " + e);
+		}
+	}
 }

@@ -24,30 +24,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * This contract checks for:
  * <ul>
- *   <li>Private constructors only</li>
- *   <li>Presence of method: public static Class getInstance()</li>
+ * <li>Private constructors only</li>
+ * <li>Presence of method: public static Class getInstance()</li>
  * </ul>
- *
  */
 public abstract class SingletonContract extends PrivateConstructorContract {
 
-    @Test
-    public void shouldImplementGetInstance() throws Exception {
-        Class<?> actual = getClassToTest();
-        assertThat(actual).isNotNull();
-        boolean found = false;
-        for (Method method : actual.getMethods()) {
-            int modifiers = method.getModifiers();
-            if (Modifier.isStatic(modifiers)
-                    && Modifier.isPublic(modifiers)
-                    && method.getName().equals("getInstance")
-                    && (method.getParameterTypes().length == 0)
-                    && method.getReturnType() == actual) {
-                found = true;
-                break;
-            }
-        }
-        assertThat(found).describedAs("Has method: public static %s getInstance()", actual.getSimpleName()).isTrue();
-    }
+	@org.junit.jupiter.api.Test
+	@Test
+	public void shouldImplementGetInstance() throws Exception {
+		Class<?> actual = getClassToTest();
+		assertThat(actual).isNotNull();
+		boolean found = false;
+		for (Method method : actual.getMethods()) {
+			int modifiers = method.getModifiers();
+			if (Modifier.isStatic(modifiers)
+					&& Modifier.isPublic(modifiers)
+					&& method.getName().equals("getInstance")
+					&& (method.getParameterTypes().length == 0)
+					&& method.getReturnType() == actual) {
+				found = true;
+				break;
+			}
+		}
+		assertThat(found).describedAs("Has method: public static %s getInstance()", actual.getSimpleName()).isTrue();
+	}
 
 }

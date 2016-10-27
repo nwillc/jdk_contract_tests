@@ -16,6 +16,7 @@ package com.github.nwillc.contracts;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.util.Comparator;
 
@@ -25,15 +26,16 @@ import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 /**
  * This contract checks:
  * <ul>
- *     <li>compare with argument that can't be cast to correct type throws ClassCastException</li>
- *     <li>returns 0 on equality</li>
- *     <li>returns less then zero on less then</li>
- *     <li>returns greater then zero on greater</li>
- *     <li>Null values throw a NullPointerException (see below)</li>
+ * <li>compare with argument that can't be cast to correct type throws ClassCastException</li>
+ * <li>returns 0 on equality</li>
+ * <li>returns less then zero on less then</li>
+ * <li>returns greater then zero on greater</li>
+ * <li>Null values throw a NullPointerException (see below)</li>
  * </ul>
  * The jdk contract does not specify how nulls are handled. The possibilities are nulls constitute an error,
  * they are ordered first, or ordered last. This contract defaults to the error case, but the behavior can
  * be controlled by calling setNulls() with the appropriate value.
+ *
  * @since 1.6.5
  */
 public abstract class ComparatorContract<T> {
@@ -41,11 +43,17 @@ public abstract class ComparatorContract<T> {
 	 * @since 1.6.6
 	 */
 	protected enum Nulls {
-		/** Nulls throw NullPointerException. */
+		/**
+		 * Nulls throw NullPointerException.
+		 */
 		ERROR,
-		/** Nulls are considered to be ordered first. */
+		/**
+		 * Nulls are considered to be ordered first.
+		 */
 		NULLS_FIRST,
-		/** Nulls are considered to be ordered last. */
+		/**
+		 * Nulls are considered to be ordered last.
+		 */
 		NULLS_LAST
 	}
 
@@ -55,17 +63,20 @@ public abstract class ComparatorContract<T> {
 	private Nulls nulls = Nulls.ERROR;
 
 	protected abstract Comparator<T> getComparator();
+
 	protected abstract T getValue();
+
 	protected abstract T getLesserValue();
 
 	/**
-	 * @since 1.6.6
 	 * @param nulls How nulls should be treated.
+	 * @since 1.6.6
 	 */
 	public void setNulls(Nulls nulls) {
 		this.nulls = nulls;
 	}
 
+	@BeforeEach
 	@Before
 	public void contractSetup() throws Exception {
 		comparator = getComparator();
@@ -74,34 +85,40 @@ public abstract class ComparatorContract<T> {
 		lesserValue = getLesserValue();
 	}
 
+	@org.junit.jupiter.api.Test
 	@SuppressWarnings("unchecked")
 	@Test
 	public void shouldThrowExceptionForBadCast() throws Exception {
 		try {
-			comparator.compare(value, (T)this);
+			comparator.compare(value, (T) this);
 			failBecauseExceptionWasNotThrown(ClassCastException.class);
-		} catch (ClassCastException e) {}
+		} catch (ClassCastException e) {
+		}
 	}
 
+	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldReturnZeroOnEquality() throws Exception {
-		assertThat(comparator.compare(value,value)).isEqualTo(0);
+		assertThat(comparator.compare(value, value)).isEqualTo(0);
 	}
 
+	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldReturnNegativeOnLessThan() throws Exception {
 		assertThat(comparator.compare(lesserValue, value)).isLessThan(0);
 	}
 
+	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldReturnPositiveOnGreaterThan() throws Exception {
 		assertThat(comparator.compare(value, lesserValue)).isGreaterThan(0);
 	}
 
 	/**
+	 * @throws Exception on error
 	 * @since 1.6.6
-     * @throws Exception on error
 	 */
+	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldThrowExceptionIfNullsError() throws Exception {
 		if (nulls != Nulls.ERROR) {
@@ -111,6 +128,7 @@ public abstract class ComparatorContract<T> {
 		try {
 			comparator.compare(null, null);
 			failBecauseExceptionWasNotThrown(NullPointerException.class);
-		} catch (NullPointerException e) {}
+		} catch (NullPointerException e) {
+		}
 	}
 }

@@ -24,25 +24,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * This contract checks for:
  * <ul>
- *     <li>Presence of a no argument constructor</li>
+ * <li>Presence of a no argument constructor</li>
  * </ul>
  */
 public abstract class NoArgConstructorContract implements ClassProvider {
 
-    @Test
-    public void shouldHaveNoArgConstructor() throws Exception {
-        Class<?> actual = getClassToTest();
-        assertThat(actual).isNotNull();
+	@org.junit.jupiter.api.Test
+	@Test
+	public void shouldHaveNoArgConstructor() throws Exception {
+		Class<?> actual = getClassToTest();
+		assertThat(actual).isNotNull();
 
-        Constructor<?>[] cons = actual.getDeclaredConstructors();
-        assertThat(cons.length).describedAs("Only single constructor").isEqualTo(1);
-        boolean found = false;
-        for (Constructor constructor : cons) {
-            if (constructor.getParameterTypes().length == 0) {
-                found = true;
-                break;
-            }
-        }
-        assertThat(found).describedAs("No arg constructor").isTrue();
-    }
+		Constructor<?>[] cons = actual.getDeclaredConstructors();
+		assertThat(cons.length).describedAs("Only single constructor").isEqualTo(1);
+		boolean found = false;
+		for (Constructor constructor : cons) {
+			if (constructor.getParameterTypes().length == 0) {
+				found = true;
+				break;
+			}
+		}
+		assertThat(found).describedAs("No arg constructor").isTrue();
+	}
 }
