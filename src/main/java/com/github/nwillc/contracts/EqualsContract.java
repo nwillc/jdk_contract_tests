@@ -59,7 +59,8 @@ public abstract class EqualsContract<T> {
 	@Test
 	public void testEquals() throws Exception {
 		List<T> instances = getEquals();
-		assertThat(instances).isNotEmpty();
+		assertThat(instances != null).isTrue();
+        assertThat(instances.size()).isGreaterThan(0);
 
 		for (T t1 : instances) {
 			for (T t2 : instances) {
@@ -72,7 +73,8 @@ public abstract class EqualsContract<T> {
 	@Test
 	public void testNullValue() throws Exception {
 		List<T> instances = getEquals();
-		assertThat(instances).isNotEmpty();
+        assertThat(instances != null).isTrue();
+        assertThat(instances.size()).isGreaterThan(0);
 
 		assertThat(instances.get(0).equals(null)).isFalse();
 	}
@@ -80,8 +82,9 @@ public abstract class EqualsContract<T> {
 	@org.junit.jupiter.api.Test
 	@Test
 	public void testNotEquals() throws Exception {
-		List<T> instances = getNotEquals();
-		assertThat(instances).isNotEmpty();
+        List<T> instances = getNotEquals();
+        assertThat(instances != null).isTrue();
+        assertThat(instances.size()).isGreaterThan(0);
 
 		for (T t1 : instances) {
 			for (T t2 : instances) {
@@ -95,8 +98,9 @@ public abstract class EqualsContract<T> {
 	@org.junit.jupiter.api.Test
 	@Test
 	public void testEqualHashes() throws Exception {
-		List<T> instances = getEquals();
-		assertThat(instances).isNotEmpty();
+        List<T> instances = getEquals();
+        assertThat(instances != null).isTrue();
+        assertThat(instances.size()).isGreaterThan(0);
 
 		for (T t1 : instances) {
 			for (T t2 : instances) {
@@ -109,8 +113,9 @@ public abstract class EqualsContract<T> {
 	@org.junit.jupiter.api.Test
 	@Test
 	public void testNotEqualHashes() throws Exception {
-		List<T> instances = getNotEquals();
-		assertThat(instances).isNotEmpty();
+        List<T> instances = getNotEquals();
+        assertThat(instances != null).isTrue();
+        assertThat(instances.size()).isGreaterThan(0);
 
 		for (T t1 : instances) {
 			for (T t2 : instances) {
