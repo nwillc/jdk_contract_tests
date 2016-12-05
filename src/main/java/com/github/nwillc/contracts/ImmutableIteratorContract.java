@@ -35,7 +35,7 @@ public abstract class ImmutableIteratorContract extends IteratorContract {
 	@Test
 	public void shouldNotImplementRemove() throws Exception {
 		Iterator iterator = getNonEmptyIterator();
-		assertThat(iterator).isNotNull();
+		assertThat(iterator != null);
 		try {
 			iterator.remove();
 			failBecauseExceptionWasNotThrown(UnsupportedOperationException.class);
