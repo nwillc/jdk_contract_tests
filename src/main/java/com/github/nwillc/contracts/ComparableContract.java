@@ -19,7 +19,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Fail.failBecauseExceptionWasNotThrown;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * This contract checks:
@@ -57,22 +57,15 @@ public abstract class ComparableContract<T extends Comparable> {
 	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldThrowExceptionForNull() throws Exception {
-		try {
-			value.compareTo(null);
-			failBecauseExceptionWasNotThrown(NullPointerException.class);
-		} catch (NullPointerException e) {
-		}
+
+		assertThatThrownBy(() -> value.compareTo(null)).isInstanceOf(NullPointerException.class);
 	}
 
 	@SuppressWarnings("unchecked")
 	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldThrowExceptionForBadCast() throws Exception {
-		try {
-			value.compareTo(this);
-			failBecauseExceptionWasNotThrown(ClassCastException.class);
-		} catch (ClassCastException e) {
-		}
+		assertThatThrownBy(() -> value.compareTo(this)).isInstanceOf(ClassCastException.class);
 	}
 
 	@org.junit.jupiter.api.Test

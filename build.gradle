@@ -27,10 +27,13 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3',
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintray_plugin_version",
                 'gradle.plugin.com.github.nwillc:vplugin:2.0.1',
                 'au.com.ish.gradle:release:2.2.2',
-                'org.tmatesoft.sqljet:sqljet:1.1.9'
+                'org.tmatesoft.sqljet:sqljet:1.1.9',
+                "org.junit.platform:junit-platform-gradle-plugin:$junit_plugin_version"
+
+      
     }
 }
 
@@ -41,6 +44,7 @@ apply plugin: "com.jfrog.bintray"
 apply plugin: "maven-publish"
 apply plugin: "jacoco"
 apply plugin: "maven"
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 repositories {
     mavenLocal()
@@ -51,15 +55,17 @@ repositories {
 
 dependencies {
     compile 'junit:junit:4.12',
-            'org.assertj:assertj-core:1.7.1',
-            'org.junit.jupiter:junit-jupiter-api:5.0.0-M3'
+            "org.assertj:assertj-core:$assertj_version",
+            "org.junit.jupiter:junit-jupiter-api:$jupiter_version"
+
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:$jupiter_version"
 }
 
 group = "com.github.nwillc"
 archivesBaseName = "jdk_contract_tests"
 version = "1.8.3-SNAPSHOT"
-targetCompatibility = "1.6"
-sourceCompatibility = "1.6"
+targetCompatibility = "1.8"
+sourceCompatibility = "1.8"
 
 jacocoTestReport {
     reports {

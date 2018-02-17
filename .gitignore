@@ -7,3 +7,4 @@ build
 env.sh
 .ruby-version
 env.bat
+out

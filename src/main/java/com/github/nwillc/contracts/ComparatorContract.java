@@ -21,6 +21,7 @@ import org.junit.jupiter.api.BeforeEach;
 import java.util.Comparator;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 
 /**
@@ -125,10 +126,6 @@ public abstract class ComparatorContract<T> {
 			return;
 		}
 
-		try {
-			comparator.compare(null, null);
-			failBecauseExceptionWasNotThrown(NullPointerException.class);
-		} catch (NullPointerException e) {
-		}
+		assertThatThrownBy(() -> comparator.compare(null,null)).isInstanceOf(NullPointerException.class);
 	}
 }
