@@ -134,6 +134,8 @@ gitPublish {
     repoUri = 'git@github.com:nwillc/jdk_contract_tests.git'
     branch = 'gh-pages'
     contents {
+        from 'README.md'
+        from 'src/pages'
         from(javadoc) {
             into 'javadoc'
         }
