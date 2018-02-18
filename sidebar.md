@@ -3,7 +3,6 @@
 - [Usage](#docs/usage)
 - [Javadoc](javadoc)
 - [Example](#docs/example)
-- [ISC](#docs/LICENSE)
 
 ## Links
 - [Issue Tracking](https://github.com/nwillc/jdk_contract_tests/issues)
