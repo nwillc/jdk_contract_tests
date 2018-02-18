@@ -65,7 +65,7 @@ dependencies {
 
 group = "com.github.nwillc"
 archivesBaseName = "jdk_contract_tests"
-version = "1.9.1-SNAPSHOT"
+version = "1.9.1"
 targetCompatibility = "1.8"
 sourceCompatibility = "1.8"
 

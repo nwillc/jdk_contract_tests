@@ -54,6 +54,7 @@ public abstract class IteratorContract {
 		assertThat(iterator.hasNext()).as("hasNest should not advance iterator").isTrue();
 	}
 
+	@org.junit.jupiter.api.Test
 	@Test
 	public void nextShouldAdvanceIterator() throws Exception {
 		int count = count(getNonEmptyIterator());
