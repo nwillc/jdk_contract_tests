@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.logging.Logger;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Fail.failBecauseExceptionWasNotThrown;
 
 /**
@@ -36,11 +37,6 @@ public abstract class ImmutableIteratorContract extends IteratorContract {
 	public void shouldNotImplementRemove() throws Exception {
 		Iterator iterator = getNonEmptyIterator();
 		assertThat(iterator).isNotNull();
-		try {
-			iterator.remove();
-			failBecauseExceptionWasNotThrown(UnsupportedOperationException.class);
-		} catch (UnsupportedOperationException e) {
-			LOGGER.fine("Caught expected " + e);
-		}
+		assertThatThrownBy(() -> iterator.remove()).isInstanceOf(UnsupportedOperationException.class);
 	}
 }
