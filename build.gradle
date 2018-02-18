@@ -143,3 +143,15 @@ gitPublish {
 }
 
 gitPublishCopy.dependsOn javadoc
+
+test {
+    testLogging {
+        events "skipped", "failed"
+    }
+
+    afterSuite { descriptor, result ->
+        if (descriptor.parent == null) {
+            logger.lifecycle("Tests run: $result.testCount, Failures: $result.failedTestCount, Skipped: $result.skippedTestCount")
+        }
+    }
+}
