@@ -8,13 +8,13 @@
 ## Links
 - [Issue Tracking](https://github.com/nwillc/jdk_contract_tests/issues)
 
--------
-[![ISC License](http://shields-nwillc.rhcloud.com/shield/tldrlegal?package=ISC)](http://shields-nwillc.rhcloud.com/homepage/tldrlegal?package=ISC)
-<br/>
-[![Build Status](http://shields-nwillc.rhcloud.com/shield/travis-ci?path=nwillc&package=jdk_contract_tests)](http://shields-nwillc.rhcloud.com/homepage/travis-ci?path=nwillc&package=jdk_contract_tests)
-<br/>
-[![Coverage Status](http://shields-nwillc.rhcloud.com/shield/codecov?path=github/nwillc&package=jdk_contract_tests)](http://shields-nwillc.rhcloud.com/homepage/codecov?path=github/nwillc&package=jdk_contract_tests)
-<br/>
-[![Download](http://shields-nwillc.rhcloud.com/shield/jcenter?path=nwillc&package=jdk_contract_tests)](http://shields-nwillc.rhcloud.com/homepage/jcenter?path=nwillc&package=jdk_contract_tests)
-<br/>
-[![Github](http://shields-nwillc.rhcloud.com/shield/github?group=com.github.nwillc&package=contracts)](http://shields-nwillc.rhcloud.com/homepage/github?path=nwillc&package=jdk_contract_tests)
+-----
+[![Coverage](https://codecov.io/gh/nwillc/jdk_contract_tests/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/gh/nwillc/jdk_contract_tests)
+</br>
+[![license](https://img.shields.io/github/license/nwillc/jdk_contract_tests.svg)](https://tldrlegal.com/license/-isc-license)
+</br>
+[![Travis](https://img.shields.io/travis/nwillc/jdk_contract_tests.svg)](https://travis-ci.org/nwillc/jdk_contract_tests)
+</br>
+[![Download](https://api.bintray.com/packages/nwillc/maven/jdk_contract_tests/images/download.svg)](https://bintray.com/nwillc/maven/jdk_contract_tests/_latestVersion)
+</br>
+
