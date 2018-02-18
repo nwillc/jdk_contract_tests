@@ -1,0 +1,10 @@
+.idea
+*.i??
+target
+.gradle
+build
+
+env.sh
+.ruby-version
+env.bat
+out
