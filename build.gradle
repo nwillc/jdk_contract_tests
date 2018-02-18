@@ -31,9 +31,10 @@ buildscript {
                 'gradle.plugin.com.github.nwillc:vplugin:2.0.1',
                 'au.com.ish.gradle:release:2.2.2',
                 'org.tmatesoft.sqljet:sqljet:1.1.9',
+                'org.ajoberstar:gradle-git-publish:0.3.2',
                 "org.junit.platform:junit-platform-gradle-plugin:$junit_plugin_version"
 
-      
+
     }
 }
 
@@ -45,6 +46,7 @@ apply plugin: "maven-publish"
 apply plugin: "jacoco"
 apply plugin: "maven"
 apply plugin: 'org.junit.platform.gradle.plugin'
+apply plugin: 'org.ajoberstar.git-publish'
 
 repositories {
     mavenLocal()
@@ -63,7 +65,7 @@ dependencies {
 
 group = "com.github.nwillc"
 archivesBaseName = "jdk_contract_tests"
-version = "1.9.0"
+version = "1.9.1-SNAPSHOT"
 targetCompatibility = "1.8"
 sourceCompatibility = "1.8"
 
@@ -127,3 +129,15 @@ bintray {
         publicDownloadNumbers = true
     }
 }
+
+gitPublish {
+    repoUri = 'git@github.com:nwillc/jdk_contract_tests.git'
+    branch = 'gh-pages'
+    contents {
+        from(javadoc) {
+            into 'javadoc'
+        }
+    }
+}
+
+gitPublishCopy.dependsOn javadoc
