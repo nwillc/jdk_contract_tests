@@ -67,6 +67,13 @@ version = "1.8.3-SNAPSHOT"
 targetCompatibility = "1.8"
 sourceCompatibility = "1.8"
 
+junitPlatform.enableStandardTestTask true
+
+jacoco {
+    toolVersion = '0.7.9'
+    applyTo junitPlatformTest
+}
+
 jacocoTestReport {
     reports {
         xml.enabled = true
@@ -118,12 +125,5 @@ bintray {
         licenses = ['ISC']
         labels = [project.name]
         publicDownloadNumbers = true
-    }
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled = true
-        html.enabled = true
     }
 }

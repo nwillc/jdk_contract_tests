@@ -90,11 +90,7 @@ public abstract class ComparatorContract<T> {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void shouldThrowExceptionForBadCast() throws Exception {
-		try {
-			comparator.compare(value, (T) this);
-			failBecauseExceptionWasNotThrown(ClassCastException.class);
-		} catch (ClassCastException e) {
-		}
+		assertThatThrownBy(() -> comparator.compare(value, (T) this)).isInstanceOf(ClassCastException.class);
 	}
 
 	@org.junit.jupiter.api.Test

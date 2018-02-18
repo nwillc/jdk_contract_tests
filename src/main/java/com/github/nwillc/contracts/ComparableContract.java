@@ -57,7 +57,6 @@ public abstract class ComparableContract<T extends Comparable> {
 	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldThrowExceptionForNull() throws Exception {
-
 		assertThatThrownBy(() -> value.compareTo(null)).isInstanceOf(NullPointerException.class);
 	}
 
