@@ -31,7 +31,7 @@ buildscript {
                 'gradle.plugin.com.github.nwillc:vplugin:2.0.1',
                 'au.com.ish.gradle:release:2.2.2',
                 'org.tmatesoft.sqljet:sqljet:1.1.9',
-                'org.ajoberstar:gradle-git-publish:0.3.2',
+                "org.ajoberstar:gradle-git-publish:$git_publish_version",
                 "org.junit.platform:junit-platform-gradle-plugin:$junit_plugin_version"
 
 
@@ -65,7 +65,7 @@ dependencies {
 
 group = "com.github.nwillc"
 archivesBaseName = "jdk_contract_tests"
-version = "1.9.1"
+version = "1.9.2"
 targetCompatibility = "1.8"
 sourceCompatibility = "1.8"
 

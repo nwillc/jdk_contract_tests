@@ -41,10 +41,13 @@ public abstract class IteratorContract {
 	@org.junit.jupiter.api.Test
 	@Test
 	public void hasNextShouldNotAdvanceIterator() throws Exception {
-		int count = count(getNonEmptyIterator());
+		Iterator iterator = getNonEmptyIterator();
+		assertThat(iterator).withFailMessage("getNonEmptyIterator returned null").isNotNull();
+		int count = count(iterator);
 		assertThat(count).as("Iterator should be non empty").isGreaterThan(0);
 
-		Iterator iterator = getNonEmptyIterator();
+		iterator = getNonEmptyIterator();
+        assertThat(iterator).withFailMessage("getNonEmptyIterator returned null").isNotNull();
 
 		while (count > 0) {
 			count--;
@@ -57,11 +60,13 @@ public abstract class IteratorContract {
 	@org.junit.jupiter.api.Test
 	@Test
 	public void nextShouldAdvanceIterator() throws Exception {
-		int count = count(getNonEmptyIterator());
+		Iterator iterator = getNonEmptyIterator();
+		assertThat(iterator).withFailMessage("getNonEmptyIterator returned null").isNotNull();
+		int count = count(iterator);
 		assertThat(count).as("Iterator should be non empty").isGreaterThan(0);
 
-		Iterator iterator = getNonEmptyIterator();
-
+		iterator = getNonEmptyIterator();
+        assertThat(iterator).withFailMessage("getNonEmptyIterator returned null").isNotNull();
 		while (count > 0) {
 			count--;
 			iterator.next();
@@ -74,7 +79,7 @@ public abstract class IteratorContract {
 	@Test
 	public void hasNextPastEnd() throws Exception {
 		Iterator iterator = getNonEmptyIterator();
-
+        assertThat(iterator).withFailMessage("getNonEmptyIterator returned null").isNotNull();
 		try {
 			while (true) {
 				iterator.next();
@@ -89,7 +94,7 @@ public abstract class IteratorContract {
 	@Test
 	public void shouldNotPassEndOfIterator() throws Exception {
 		Iterator anIterator = getNonEmptyIterator();
-		assertThat(anIterator).isNotNull();
+		assertThat(anIterator).withFailMessage("getNonEmptyIterator returned null").isNotNull();
 		while (anIterator.hasNext()) {
 			anIterator.next();
 		}
