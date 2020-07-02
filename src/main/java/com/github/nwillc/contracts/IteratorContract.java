@@ -15,7 +15,7 @@
 package com.github.nwillc.contracts;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -38,7 +38,6 @@ public abstract class IteratorContract {
 
 	protected abstract Iterator getNonEmptyIterator();
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void hasNextShouldNotAdvanceIterator() throws Exception {
 		Iterator iterator = getNonEmptyIterator();
@@ -57,7 +56,6 @@ public abstract class IteratorContract {
 		assertThat(iterator.hasNext()).as("hasNest should not advance iterator").isTrue();
 	}
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void nextShouldAdvanceIterator() throws Exception {
 		Iterator iterator = getNonEmptyIterator();
@@ -75,7 +73,6 @@ public abstract class IteratorContract {
 		assertThat(iterator.hasNext()).as("next should not advance iterator").isFalse();
 	}
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void hasNextPastEnd() throws Exception {
 		Iterator iterator = getNonEmptyIterator();
@@ -90,7 +87,6 @@ public abstract class IteratorContract {
 		assertThat(iterator.hasNext()).as("hasNext past end of iterator").isFalse();
 	}
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldNotPassEndOfIterator() throws Exception {
 		Iterator anIterator = getNonEmptyIterator();

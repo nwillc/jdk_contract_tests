@@ -14,7 +14,7 @@
 
 package com.github.nwillc.contracts;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
@@ -29,7 +29,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public abstract class PrivateConstructorContract implements ClassProvider {
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldHaveOnlyPrivateConstructors() throws Exception {
 		Class<?> actual = getClassToTest();
@@ -41,7 +40,6 @@ public abstract class PrivateConstructorContract implements ClassProvider {
 		}
 	}
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void testPrivateConstructor() throws Exception {
 		Constructor<?> constructor = getClassToTest().getDeclaredConstructor();

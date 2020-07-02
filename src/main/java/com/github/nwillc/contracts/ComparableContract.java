@@ -14,9 +14,8 @@
 
 package com.github.nwillc.contracts;
 
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -44,7 +43,6 @@ public abstract class ComparableContract<T extends Comparable> {
 	protected abstract T getLessThanValue();
 
 	@BeforeEach
-	@Before
 	public void contractSetup() throws Exception {
 		value = getValue();
 		assertThat(value).isNotNull();
@@ -54,32 +52,27 @@ public abstract class ComparableContract<T extends Comparable> {
 		assertThat(lesserValue).isNotNull();
 	}
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldThrowExceptionForNull() throws Exception {
 		assertThatThrownBy(() -> value.compareTo(null)).isInstanceOf(NullPointerException.class);
 	}
 
 	@SuppressWarnings("unchecked")
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldThrowExceptionForBadCast() throws Exception {
 		assertThatThrownBy(() -> value.compareTo(this)).isInstanceOf(ClassCastException.class);
 	}
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldReturnZeroOnEquality() throws Exception {
 		assertThat(value.compareTo(equalValue)).isEqualTo(0);
 	}
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldReturnNegativeOnLessThan() throws Exception {
 		assertThat(lesserValue.compareTo(value)).isLessThan(0);
 	}
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldReturnPositiveOnGreaterThan() throws Exception {
 		assertThat(value.compareTo(lesserValue)).isGreaterThan(0);

@@ -14,7 +14,7 @@
 
 package com.github.nwillc.contracts;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -55,7 +55,6 @@ public abstract class EqualsContract<T> {
 	 */
 	protected abstract List<T> getNotEquals();
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void testEquals() throws Exception {
 		List<T> instances = getEquals();
@@ -69,7 +68,6 @@ public abstract class EqualsContract<T> {
 		}
 	}
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void testNullValue() throws Exception {
 		List<T> instances = getEquals();
@@ -79,7 +77,6 @@ public abstract class EqualsContract<T> {
 		assertThat(instances.get(0).equals(null)).isFalse();
 	}
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void testNotEquals() throws Exception {
         List<T> instances = getNotEquals();
@@ -95,7 +92,6 @@ public abstract class EqualsContract<T> {
 		}
 	}
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void testEqualHashes() throws Exception {
         List<T> instances = getEquals();
@@ -109,8 +105,6 @@ public abstract class EqualsContract<T> {
 		}
 	}
 
-
-	@org.junit.jupiter.api.Test
 	@Test
 	public void testNotEqualHashes() throws Exception {
         List<T> instances = getNotEquals();

@@ -14,15 +14,13 @@
 
 package com.github.nwillc.contracts;
 
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Comparator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 
 /**
  * This contract checks:
@@ -78,7 +76,6 @@ public abstract class ComparatorContract<T> {
 	}
 
 	@BeforeEach
-	@Before
 	public void contractSetup() throws Exception {
 		comparator = getComparator();
 		assertThat(comparator).describedAs("getComparator must return non null value").isNotNull();
@@ -86,26 +83,22 @@ public abstract class ComparatorContract<T> {
 		lesserValue = getLesserValue();
 	}
 
-	@org.junit.jupiter.api.Test
 	@SuppressWarnings("unchecked")
 	@Test
 	public void shouldThrowExceptionForBadCast() throws Exception {
 		assertThatThrownBy(() -> comparator.compare(value, (T) this)).isInstanceOf(ClassCastException.class);
 	}
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldReturnZeroOnEquality() throws Exception {
 		assertThat(comparator.compare(value, value)).isEqualTo(0);
 	}
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldReturnNegativeOnLessThan() throws Exception {
 		assertThat(comparator.compare(lesserValue, value)).isLessThan(0);
 	}
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldReturnPositiveOnGreaterThan() throws Exception {
 		assertThat(comparator.compare(value, lesserValue)).isGreaterThan(0);
@@ -115,7 +108,6 @@ public abstract class ComparatorContract<T> {
 	 * @throws Exception on error
 	 * @since 1.6.6
 	 */
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldThrowExceptionIfNullsError() throws Exception {
 		if (nulls != Nulls.ERROR) {

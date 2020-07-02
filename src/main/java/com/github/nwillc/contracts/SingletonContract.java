@@ -14,7 +14,7 @@
 
 package com.github.nwillc.contracts;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -30,7 +30,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public abstract class SingletonContract extends PrivateConstructorContract {
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldImplementGetInstance() throws Exception {
 		Class<?> actual = getClassToTest();

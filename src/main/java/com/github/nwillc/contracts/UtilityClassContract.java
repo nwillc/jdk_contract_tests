@@ -14,7 +14,7 @@
 
 package com.github.nwillc.contracts;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -31,7 +31,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public abstract class UtilityClassContract extends PrivateConstructorContract {
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldBeFinal() throws Exception {
 		Class<?> actual = getClassToTest();
@@ -40,7 +39,6 @@ public abstract class UtilityClassContract extends PrivateConstructorContract {
 		assertThat(Modifier.isFinal(modifiers)).describedAs("Class should be final").isTrue();
 	}
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldHaveOnlyStaticMethods() throws Exception {
 		Class<?> actual = getClassToTest();

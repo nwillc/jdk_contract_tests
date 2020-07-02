@@ -14,30 +14,20 @@
 
 buildscript {
     repositories {
-        mavenLocal()
-        jcenter {
-            url 'http://jcenter.bintray.com'
-        }
         maven {
-            url 'https://plugins.gradle.org/m2/'
-        }
-        maven {
-            url 'http://maven.tmatesoft.com/content/repositories/releases/'
+            url "https://plugins.gradle.org/m2/"
         }
     }
-
     dependencies {
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintray_plugin_version",
-                'gradle.plugin.com.github.nwillc:vplugin:2.0.1',
+                'com.github.nwillc:vplugin:3.0.5',
                 'au.com.ish.gradle:release:2.2.2',
-                'org.tmatesoft.sqljet:sqljet:1.1.9',
-                "org.ajoberstar:gradle-git-publish:$git_publish_version",
-                "org.junit.platform:junit-platform-gradle-plugin:$junit_plugin_version"
-
-
+                'org.tmatesoft.sqljet:sqljet:1.1.13',
+                "org.ajoberstar:gradle-git-publish:$git_publish_version"
     }
 }
 
+apply plugin: 'idea'
 apply plugin: 'release'
 apply plugin: 'com.github.nwillc.vplugin'
 apply plugin: 'java'
@@ -45,35 +35,27 @@ apply plugin: "com.jfrog.bintray"
 apply plugin: "maven-publish"
 apply plugin: "jacoco"
 apply plugin: "maven"
-apply plugin: 'org.junit.platform.gradle.plugin'
 apply plugin: 'org.ajoberstar.git-publish'
 
 repositories {
-    mavenLocal()
-    jcenter {
-        url 'http://jcenter.bintray.com'
-    }
+    jcenter()
 }
 
 dependencies {
-    compile 'junit:junit:4.12',
-            "org.assertj:assertj-core:$assertj_version",
-            "org.junit.jupiter:junit-jupiter-api:$jupiter_version"
+    compile "org.assertj:assertj-core:$assertj_version",
+            "org.junit.jupiter:junit-jupiter:$jupiter_version"
 
     testRuntime "org.junit.jupiter:junit-jupiter-engine:$jupiter_version"
 }
 
 group = "com.github.nwillc"
 archivesBaseName = "jdk_contract_tests"
-version = "1.9.2"
+version = "2.0.0"
 targetCompatibility = "1.8"
 sourceCompatibility = "1.8"
 
-junitPlatform.enableStandardTestTask true
-
 jacoco {
-    toolVersion = '0.7.9'
-    applyTo junitPlatformTest
+    toolVersion = '0.8.5'
 }
 
 jacocoTestReport {
@@ -145,6 +127,7 @@ gitPublish {
 gitPublishCopy.dependsOn javadoc
 
 test {
+    useJUnitPlatform()
     testLogging {
         events "skipped", "failed"
     }

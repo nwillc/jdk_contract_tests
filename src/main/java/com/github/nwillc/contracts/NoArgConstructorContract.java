@@ -14,8 +14,7 @@
 
 package com.github.nwillc.contracts;
 
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Constructor;
 
@@ -29,7 +28,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public abstract class NoArgConstructorContract implements ClassProvider {
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldHaveNoArgConstructor() throws Exception {
 		Class<?> actual = getClassToTest();

@@ -14,14 +14,13 @@
 
 package com.github.nwillc.contracts;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
 import java.util.logging.Logger;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Fail.failBecauseExceptionWasNotThrown;
 
 /**
  * This contract checks for:
@@ -32,7 +31,6 @@ import static org.assertj.core.api.Fail.failBecauseExceptionWasNotThrown;
 public abstract class ImmutableIteratorContract extends IteratorContract {
 	private static final Logger LOGGER = Logger.getLogger(ImmutableIteratorContract.class.getName());
 
-	@org.junit.jupiter.api.Test
 	@Test
 	public void shouldNotImplementRemove() throws Exception {
 		Iterator iterator = getNonEmptyIterator();

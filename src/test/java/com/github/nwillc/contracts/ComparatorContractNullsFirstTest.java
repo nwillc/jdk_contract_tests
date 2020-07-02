@@ -14,7 +14,6 @@
 
 package com.github.nwillc.contracts;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.util.Comparator;
@@ -24,7 +23,6 @@ import java.util.Comparator;
  */
 public class ComparatorContractNullsFirstTest extends ComparatorContractTest {
 
-    @Before
     @BeforeEach
     public void setUp() throws Exception {
         setNulls(Nulls.NULLS_FIRST);
