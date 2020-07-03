@@ -126,6 +126,15 @@ gitPublish {
 
 gitPublishCopy.dependsOn javadoc
 
+bintrayUpload.onlyIf {
+    if (project.version.toString().contains('-')) {
+        logger.lifecycle("Version $project.version is not a release version - skipping upload.")
+        return false
+    } else {
+        return true
+    }
+}
+
 test {
     useJUnitPlatform()
     testLogging {
